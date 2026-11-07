@@ -1,0 +1,17 @@
+// SettingsSection – game rule rows and small spacing tweaks.
+
+.layout-title {
+  margin-top: 8px;
+}
+
+.rule-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.load-error {
+  margin-top: 0;
+  margin-bottom: 10px;
+}

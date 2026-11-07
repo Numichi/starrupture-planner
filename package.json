@@ -1,0 +1,49 @@
+{
+  "name": "starrupture-production-planner",
+  "private": true,
+  "version": "0.1.0",
+  "description": "StarRupture production chain planner: a browser-based node editor that computes flows, shortages, power and build cost.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "smoke": "tsx .claude/skills/verify-changes/smoke-test.mts",
+    "verify": "npm run format:check && npm run lint && npm run typecheck"
+  },
+  "dependencies": {
+    "elkjs": "^0.12.1",
+    "vue": "^3.5.45",
+    "yalps": "^0.6.4",
+    "yaml": "^2.9.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@vitejs/plugin-vue": "^6.0.10",
+    "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.14.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-vue": "^10.12.0",
+    "globals": "^17.14.0",
+    "prettier": "^3.9.10",
+    "sass": "^1.108.1",
+    "tsx": "^4.23.15",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.1",
+    "vite": "^8.3.6",
+    "vue-eslint-parser": "^10.4.2",
+    "vue-tsc": "^3.3.14"
+  },
+  "overrides": {
+    "minimatch": "^11.0.5"
+  }
+}

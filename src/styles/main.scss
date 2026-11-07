@@ -1,0 +1,13 @@
+// =============================================================================
+// Global stylesheet – the entry point imported once by `src/main.ts`.
+//
+//   _tokens.scss  colour and font tokens (CSS custom properties, light + dark theme)
+//   _base.scss    box model, page frame, typography, focus ring
+//   _panel.scss   shared classes of the side panel and the editors (not scoped: the panel
+//                 sections and the editors use the same classes)
+//
+// Component-specific styles live next to each component (`<Name>/<Name>.scss`, scoped).
+// =============================================================================
+@use 'tokens';
+@use 'base';
+@use 'panel';

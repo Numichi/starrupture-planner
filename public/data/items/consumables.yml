@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=../schema/items.schema.json
+#
+# ITEMS – CONSUMABLES (ammunition, explosives)
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Every recipe value is items/min for one building; the comment
+# holds the per-cycle source data (x items / s). Fields: docs/CONFIGURATION.md.
+#
+# An item without a recipe comes from a mine (buildings/extraction.yml), or there is no
+# data yet about the building that makes it – then bring it with a Receiver or an incoming rail.
+
+pistol_ammo:
+  name: Pistol Ammo
+  icon: items/pistol_ammo.png
+  color: '#95825a'
+  short: PA
+  recipes:
+    - id: pistol_ammo_fabricator
+      building: fabricator
+      input: { basic_building_material: 210 }
+      output: 375
+      # Fabricator: x25 / 4 s
+
+standard_ammo:
+  name: Standard Ammo
+  icon: items/standard_ammo.png
+  color: '#8a8553'
+  short: SA
+  recipes:
+    - id: standard_ammo_mega_press
+      building: mega_press
+      input: { basic_building_material: 180, wolfram_powder: 40 }
+      output: 200
+      # Mega Press: x20 / 6 s
+
+shotgun_ammo:
+  name: Shotgun Ammo
+  icon: items/shotgun_ammo.png
+  color: '#8a5f53'
+  short: SA
+  recipes:
+    - id: shotgun_ammo_mega_press
+      building: mega_press
+      input: { basic_building_material: 200, calcium_powder: 60 }
+      output: 150
+      # Mega Press: x15 / 6 s
+
+heavy_ammo:
+  name: Heavy Ammo
+  icon: items/heavy_ammo.png
+  color: '#898882'
+  short: HA
+  recipes:
+    - id: heavy_ammo_mega_press
+      building: mega_press
+      input: { basic_building_material: 240, titanium_rod: 60 }
+      output: 150
+      # Mega Press: x15 / 6 s
+
+explosive_charge:
+  name: Explosive Charge
+  icon: items/explosive_charge.png
+  color: '#926250'
+  short: EC
+  recipes:
+    # Unlock at the Recipe Station: Explosive Charge - Blueprint x1, Reinforced Housing x800, Epoxy x600, Data Point x2000
+    - id: explosive_charge_assembler
+      building: assembler
+      input: { reinforced_housing: 20, epoxy: 10 }
+      output: 10
+      # Assembler: x1 / 6 s

@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "Vue.volar",
+    "redhat.vscode-yaml",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "GitHub.copilot-chat",
+    "anthropic.claude-code"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm ci)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run lint)",
+      "Bash(npm run lint:fix)",
+      "Bash(npm run format)",
+      "Bash(npm run format:check)",
+      "Bash(npm run verify)",
+      "Bash(npm run build)",
+      "Bash(npm run smoke)"
+    ]
+  }
+}

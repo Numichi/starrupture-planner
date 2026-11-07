@@ -1,0 +1,16 @@
+# Build output and dependencies
+dist/
+node_modules/
+package-lock.json
+
+# Game data and images are edited by hand (YAML comments and alignment are kept as written)
+public/
+
+# Documentation is formatted by hand (tables, wrapped prose)
+*.md
+docs/
+
+# Docker files are maintained separately
+docker/
+Dockerfile
+docker-compose.yaml

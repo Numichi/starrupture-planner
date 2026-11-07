@@ -1,0 +1,460 @@
+# yaml-language-server: $schema=../schema/items.schema.json
+#
+# ITEMS – BASIC MATERIALS AND INTERMEDIATE PRODUCTS
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Every recipe value is items/min for one building; the comment
+# holds the per-cycle source data (x items / s). Fields: docs/CONFIGURATION.md.
+#
+# An item without a recipe comes from a mine (buildings/extraction.yml), or there is no
+# data yet about the building that makes it – then bring it with a Receiver or an incoming rail.
+
+basic_building_material:
+  name: Basic Building Material
+  icon: items/basic_building_material.png
+  color: '#7a7a7a'
+  short: BBM
+  recipes:
+    # Unlock at the Recipe Station: Basic Building Material x100, Meteorite Heart x1, Data Point x100
+    - id: basic_building_material_fabricator
+      building: fabricator
+      input: { wolfram_ore: 30, titanium_ore: 30 }
+      output: 300
+      # Fabricator: x10 / 2 s
+
+intermediate_building_material:
+  name: Intermediate Building Material
+  icon: items/intermediate_building_material.png
+  color: '#8f673d'
+  short: IBM
+  recipes:
+    # Unlock at the Recipe Station: Intermediate Building Material x500, Meteorite Heart x10, Data Point x500
+    - id: intermediate_building_material_mega_press
+      building: mega_press
+      input: { basic_building_material: 400, inductor: 20, glass: 20, titanium_housing: 20 }
+      output: 250
+      # Mega Press: x25 / 6 s
+
+titanium_rod:
+  name: Titanium Rod
+  icon: items/titanium_rod.png
+  color: '#4d5680'
+  short: TR
+  recipes:
+    - id: titanium_rod_fabricator
+      building: fabricator
+      input: { titanium_bar: 60 }
+      output: 60
+      # Fabricator: x2 / 2 s
+    - id: titanium_rod_fabricator_v2
+      building: fabricator_v2
+      input: { titanium_bar: 90 }
+      output: 180
+      # Fabricator v.2: x6 / 2 s
+
+titanium_beam:
+  name: Titanium Beam
+  icon: items/titanium_beam.png
+  color: '#4f5a84'
+  short: TB
+  recipes:
+    # Unlock at the Recipe Station: Titanium Bar x600
+    - id: titanium_beam_fabricator
+      building: fabricator
+      input: { titanium_bar: 40 }
+      output: 60
+      # Fabricator: x3 / 3 s
+    - id: titanium_beam_fabricator_v2
+      building: fabricator_v2
+      input: { titanium_bar: 60 }
+      output: 120
+      # Fabricator v.2: x6 / 3 s
+
+titanium_sheet:
+  name: Titanium Sheet
+  icon: items/titanium_sheet.png
+  color: '#4d5a80'
+  short: TS
+  recipes:
+    # Unlock at the Recipe Station: Titanium Bar x600, Data Point x200
+    - id: titanium_sheet_fabricator
+      building: fabricator
+      input: { titanium_bar: 30 }
+      output: 60
+      # Fabricator: x2 / 2 s
+    - id: titanium_sheet_fabricator_v2
+      building: fabricator_v2
+      input: { titanium_bar: 60 }
+      output: 180
+      # Fabricator v.2: x6 / 2 s
+
+wolfram_wire:
+  name: Wolfram Wire
+  icon: items/wolfram_wire.png
+  color: '#805c4d'
+  short: WW
+  recipes:
+    - id: wolfram_wire_fabricator
+      building: fabricator
+      input: { wolfram_bar: 15 }
+      output: 30
+      # Fabricator: x2 / 4 s
+    - id: wolfram_wire_fabricator_v2
+      building: fabricator_v2
+      input: { wolfram_bar: 30 }
+      output: 120
+      # Fabricator v.2: x8 / 4 s
+
+wolfram_plate:
+  name: Wolfram Plate
+  icon: items/wolfram_plate.png
+  color: '#91523b'
+  short: WP
+  recipes:
+    # Unlock at the Recipe Station: Wolfram Bar x600, Data Point x400
+    - id: wolfram_plate_fabricator
+      building: fabricator
+      input: { wolfram_bar: 30 }
+      output: 60
+      # Fabricator: x2 / 2 s
+    - id: wolfram_plate_fabricator_v2
+      building: fabricator_v2
+      input: { wolfram_bar: 90 }
+      output: 180
+      # Fabricator v.2: x6 / 2 s
+
+wolfram_powder:
+  name: Wolfram Powder
+  icon: items/wolfram_powder.png
+  color: '#976b5b'
+  short: WP
+  recipes:
+    - id: wolfram_powder_furnace
+      building: furnace
+      input: { wolfram_bar: 30 }
+      output: 90
+      # Furnace: x3 / 2 s
+    - id: wolfram_powder_furnace_v2
+      building: furnace_v2
+      input: { wolfram_bar: 60 }
+      output: 300
+      # Furnace v.2: x10 / 2 s
+
+calcium_powder:
+  name: Calcium Powder
+  icon: items/calcium_powder.png
+  color: '#a59c97'
+  short: CP
+  recipes:
+    # Unlock at the Recipe Station: Calcium Block x600
+    - id: calcium_powder_furnace
+      building: furnace
+      input: { calcium_block: 20 }
+      output: 60
+      # Furnace: x3 / 3 s
+    - id: calcium_powder_furnace_v2
+      building: furnace_v2
+      input: { calcium_block: 40 }
+      output: 200
+      # Furnace v.2: x10 / 3 s
+
+calcite_sheets:
+  name: Calcite Sheets
+  icon: items/calcite_sheets.png
+  color: '#b69586'
+  short: CS
+  recipes:
+    - id: calcite_sheets_fabricator
+      building: fabricator
+      input: { calcium_block: 30 }
+      output: 60
+      # Fabricator: x2 / 2 s
+    - id: calcite_sheets_fabricator_v2
+      building: fabricator_v2
+      input: { calcium_block: 90 }
+      output: 180
+      # Fabricator v.2: x6 / 2 s
+
+ceramics:
+  name: Ceramics
+  icon: items/ceramics.png
+  color: '#717068'
+  short: Ce
+  recipes:
+    # Unlock at the Recipe Station: Wolfram Powder x900, Calcite Sheets x600, Data Point x400
+    - id: ceramics_furnace
+      building: furnace
+      input: { calcite_sheets: 30, wolfram_powder: 30 }
+      output: 60
+      # Furnace: x2 / 2 s
+    - id: ceramics_furnace_v2
+      building: furnace_v2
+      input: { calcite_sheets: 60, wolfram_powder: 60 }
+      output: 120
+      # Furnace v.2: x4 / 2 s
+
+glass:
+  name: Glass
+  icon: items/glass.png
+  color: '#656e6b'
+  short: Gl
+  recipes:
+    # Unlock at the Recipe Station: Helium-3 x2500, Calcium Powder x600, Data Point x400
+    - id: glass_furnace
+      building: furnace
+      input: { helium_3: 20, calcium_powder: 40 }
+      output: 40
+      # Furnace: x2 / 3 s
+    - id: glass_furnace_v2
+      building: furnace_v2
+      input: { helium_3: 40, calcium_powder: 60 }
+      output: 80
+      # Furnace v.2: x4 / 3 s
+    - id: glass_furnace_v2_goethite
+      name: Glass (Goethite)
+      building: furnace_v2
+      input: { pressurized_helium: 20, calcite_sheets: 20, goethite_ingot: 20 }
+      output: 320
+      # Furnace v.2: x16 / 3 s
+
+synthetic_silicon:
+  name: Synthetic Silicon
+  icon: items/synthetic_silicon.png
+  color: '#94968e'
+  short: SS
+  recipes:
+    # Unlock at the Recipe Station: Synthetic Silicon - Blueprint x1, Calcium Powder x600, Ceramics x800, Helium-3 x2000, Data Point x600
+    - id: synthetic_silicon_furnace
+      building: furnace
+      input: { calcium_powder: 60, helium_3: 30, ceramics: 60 }
+      output: 60
+      # Furnace: x2 / 2 s
+    - id: synthetic_silicon_furnace_v2
+      building: furnace_v2
+      input: { calcium_powder: 90, helium_3: 90, ceramics: 60 }
+      output: 120
+      # Furnace v.2: x4 / 2 s
+
+titanium_housing:
+  name: Titanium Housing
+  icon: items/titanium_housing.png
+  color: '#4d5580'
+  short: TH
+  recipes:
+    # Unlock at the Recipe Station: Titanium Sheet x600, Titanium Beam x300, Data Point x400
+    - id: titanium_housing_furnace
+      building: furnace
+      input: { titanium_beam: 30, titanium_sheet: 60 }
+      output: 30
+      # Furnace: x1 / 2 s
+    - id: titanium_housing_furnace_v2
+      building: furnace_v2
+      input: { titanium_beam: 90, titanium_sheet: 60 }
+      output: 60
+      # Furnace v.2: x2 / 2 s
+
+heat_resistant_sheet:
+  name: Heat Resistant Sheet
+  icon: items/heat_resistant_sheet.png
+  color: '#7c7b7b'
+  short: HRS
+  recipes:
+    # Unlock at the Recipe Station: Titanium Sheet x600, Wolfram Plate x600, Glass x200, Data Point x600
+    - id: heat_resistant_sheet_furnace
+      building: furnace
+      input: { wolfram_plate: 15, titanium_sheet: 30, glass: 15 }
+      output: 30
+      # Furnace: x2 / 4 s
+    - id: heat_resistant_sheet_furnace_v2_titanoferrite
+      name: Heat Resistant Sheet (Titanoferrite)
+      building: furnace_v2
+      input: { titanoferrite_ingot: 15, wolfram_steel_ingot: 15, helium_3: 45 }
+      output: 180
+      # Furnace v.2: x12 / 4 s
+    - id: heat_resistant_sheet_furnace_v2
+      building: furnace_v2
+      input: { wolfram_plate: 45, titanium_sheet: 45, glass: 15 }
+      output: 60
+      # Furnace v.2: x4 / 4 s
+
+tube:
+  name: Tube
+  icon: items/tube.png
+  color: '#767575'
+  short: Tu
+  recipes:
+    # Unlock at the Recipe Station: Tube - Blueprint x1, Titanium Rod x300, Titanium Sheet x600, Data Point x400
+    - id: tube_fabricator
+      building: fabricator
+      input: { titanium_rod: 30, titanium_sheet: 30 }
+      output: 120
+      # Fabricator: x4 / 2 s
+    - id: tube_fabricator_v2
+      building: fabricator_v2
+      input: { titanium_rod: 60, titanium_sheet: 60 }
+      output: 300
+      # Fabricator v.2: x10 / 2 s
+    - id: tube_fabricator_v2_goethite
+      name: Tube (Goethite)
+      building: fabricator_v2
+      input: { goethite_ingot: 30, titanium_sheet: 90 }
+      output: 480
+      # Fabricator v.2: x16 / 2 s
+
+reinforced_frame:
+  name: Reinforced Frame
+  icon: items/reinforced_frame.png
+  color: '#62666a'
+  short: RF
+  recipes:
+    # Unlock at the Recipe Station: Titanoferrite Ingot x500, Tube x600, Titanium Beam x800, Data Point x2000
+    - id: reinforced_frame_mega_press
+      building: mega_press
+      input: { tube: 40, titanoferrite_ingot: 20, titanium_beam: 20 }
+      output: 20
+      # Mega Press: x2 / 6 s
+
+reinforced_housing:
+  name: Reinforced Housing
+  icon: items/reinforced_housing.png
+  color: '#4d5980'
+  short: RH
+  recipes:
+    # Unlock at the Recipe Station: Wolfram Steel Ingot x500, Titanium Housing x600, Wolfram Plate x800, Data Point x2000
+    - id: reinforced_housing_mega_press
+      building: mega_press
+      input: { titanium_housing: 15, wolfram_steel_ingot: 30, wolfram_plate: 45 }
+      output: 45
+      # Mega Press: x3 / 4 s
+
+goethite_lattice:
+  name: Goethite Lattice
+  icon: items/goethite_lattice.png
+  color: '#4d5480'
+  short: GL
+  recipes:
+    # Unlock at the Recipe Station: Goethite Lattice - Blueprint x1, Goethite Ingot x600, Titanoferrite Ingot x400, Wolfram Steel Ingot x400, Data Point x2000
+    - id: goethite_lattice_mega_press
+      building: mega_press
+      input: { goethite_ingot: 20, titanoferrite_ingot: 40, wolfram_steel_ingot: 40 }
+      output: 60
+      # Mega Press: x3 / 3 s
+
+aerogel:
+  name: Aerogel
+  icon: items/aerogel.png
+  color: '#357aa7'
+  short: Ae
+  recipes:
+    # Unlock at the Recipe Station: Goethite Powder x600, Calcium Powder x1000, Liquid Helium x300, Data Point x4000
+    - id: aerogel_compounder
+      building: compounder
+      input: { goethite_powder: 30, calcium_powder: 40, liquid_helium: 20 }
+      output: 20
+      # Compounder: x2 / 6 s
+
+epoxy:
+  name: Epoxy
+  icon: items/epoxy.png
+  color: '#605893'
+  short: Ep
+  recipes:
+    # Unlock at the Recipe Station: Goethite Powder x600, Liquid Helium x600, Synthetic Resin x800, Data Point x2000
+    - id: epoxy_compounder
+      building: compounder
+      input: { liquid_helium: 20, goethite_powder: 40, synthetic_resin: 20 }
+      output: 40
+      # Compounder: x2 / 3 s
+    - id: epoxy_compounder_v2
+      building: compounder_v2
+      input: { liquid_helium: 40, goethite_powder: 40, synthetic_resin: 40 }
+      output: 120
+      # Compounder v.2: x6 / 3 s
+
+uberfilament:
+  name: Uberfilament
+  icon: items/uberfilament.png
+  color: '#a47768'
+  short: Ub
+  recipes:
+    # Unlock at the Recipe Station: Uberfilament - Blueprint x1, Epoxy x400, Goethite Lattice x600, Calcium Powder x800, Data Point x2000
+    - id: uberfilament_assembler
+      building: assembler
+      input: { calcium_powder: 60, goethite_lattice: 30, epoxy: 15 }
+      output: 15
+      # Assembler: x1 / 4 s
+
+plastic:
+  name: Plastic
+  icon: items/plastic.png
+  color: '#666666'
+  short: Pl
+  recipes:
+    # Unlock at the Recipe Station: Refined Oil x600, Sulfuric Acid x800, Chemicals x800, Data Point x4000
+    - id: plastic_compounder
+      building: compounder
+      input: { refined_oil: 22.5, sulfuric_acid: 7.5, chemicals: 7.5 }
+      output: 37.5
+      # Compounder: x5 / 8 s
+
+plastic_dust:
+  name: Plastic Dust
+  icon: items/plastic_dust.png
+  color: '#616b6b'
+  short: PD
+  recipes:
+    # Unlock at the Recipe Station: Plastic Dust - Blueprint x1, Organic Compound x300, Basic Fuel x300, Plastic x700, Data Point x4000
+    - id: plastic_dust_assembler
+      building: assembler
+      input: { organic_compound: 20, basic_fuel: 10, plastic: 10 }
+      output: 20
+      # Assembler: x2 / 6 s
+
+nanofiber:
+  name: Nanofiber
+  icon: items/nanofiber.png
+  color: '#73777b'
+  short: Na
+  recipes:
+    # Unlock at the Recipe Station: Tube x1000, Liquid Helium x400, Data Point x2000
+    - id: nanofiber_compounder
+      building: compounder
+      input: { tube: 120, liquid_helium: 40, wolfram_wire: 40 }
+      output: 20
+      # Compounder: x2 / 6 s
+    - id: nanofiber_compounder_v2
+      building: compounder_v2
+      input: { tube: 200, liquid_helium: 60, wolfram_wire: 60 }
+      output: 60
+      # Compounder v.2: x6 / 6 s
+
+lens:
+  name: Lens
+  icon: items/lens.png
+  color: '#717472'
+  short: Le
+  recipes:
+    # Unlock at the Recipe Station: Synthetic Resin x300, Hardening Agent x500, Glass x500, Data Point x2000
+    - id: lens_compounder
+      building: compounder
+      input: { glass: 45, hardening_agent: 22.5, synthetic_resin: 15 }
+      output: 7.5
+      # Compounder: x1 / 8 s
+    - id: lens_compounder_v2
+      building: compounder_v2
+      input: { glass: 75, hardening_agent: 30, synthetic_resin: 30 }
+      output: 22.5
+      # Compounder v.2: x3 / 8 s
+
+scaffolding:
+  name: Scaffolding
+  icon: items/scaffolding.png
+  color: '#676765'
+  short: Sc
+  recipes:
+    - id: scaffolding_constructorizer
+      building: constructorizer
+      # No cycle time data: only the per-cycle quantities are known, the factory
+      # computes with 0. Until the data is updated, it can be entered in the UI
+      # (Missing data, or the factory editor).
+      perCycle: { input: { uberfilament: 1, reinforced_frame: 2, goethite_lattice: 1, plastic_dust: 1 }, output: 1 }

@@ -1,0 +1,243 @@
+// GraphNode – factory box, header, port rows, count with the auto / manual pill, power.
+
+.node {
+  transition: opacity 0.15s;
+  cursor: grab;
+}
+
+.node--dimmed {
+  opacity: 0.35;
+}
+
+.node-glow {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  opacity: 0;
+}
+
+.node--selected .node-glow,
+.node--highlighted .node-glow {
+  opacity: 0.9;
+}
+
+.node-box {
+  fill: var(--node-bg);
+  stroke: var(--node-border);
+  stroke-width: 1.2;
+}
+
+.node:hover .node-box {
+  stroke: var(--accent);
+}
+
+.node--warn .node-box {
+  stroke: var(--danger);
+}
+
+// ---------- Header ----------
+
+.node-header {
+  fill: var(--node-header);
+}
+
+.node-title {
+  font-size: 12px;
+  font-weight: 650;
+  fill: var(--node-title);
+  dominant-baseline: central;
+}
+
+.node-upgrade {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--accent);
+  text-anchor: end;
+  dominant-baseline: central;
+}
+
+// ---------- Port rows ----------
+
+.node-rate {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--text);
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+
+  &--end {
+    text-anchor: end;
+  }
+
+  &--reduced {
+    fill: var(--power);
+  }
+}
+
+.node-nodata text {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--power);
+  dominant-baseline: central;
+}
+
+.node-util {
+  fill: var(--warn-bg);
+  stroke: var(--power);
+  stroke-width: 1;
+}
+
+.node-util-text {
+  font-size: 10px;
+  font-weight: 700;
+  fill: var(--power);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.node-unit {
+  font-size: 9.5px;
+  font-weight: 400;
+  fill: var(--text-muted);
+}
+
+.node-per {
+  font-size: 9.5px;
+  fill: var(--text-muted);
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+
+.tone-bad {
+  fill: var(--danger);
+  font-weight: 600;
+}
+
+.tone-warn {
+  fill: var(--power);
+  font-weight: 600;
+}
+
+.tone-out {
+  fill: var(--ok);
+  font-weight: 600;
+}
+
+.port-row {
+  cursor: crosshair;
+
+  &:hover .port-hit {
+    fill: var(--accent-soft);
+  }
+}
+
+.port-hit {
+  fill: transparent;
+}
+
+// ---------- Middle: building, count, mode, power ----------
+
+.node-building {
+  font-size: 10.5px;
+  fill: var(--text-muted);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.node-count {
+  font-size: 19px;
+  font-weight: 700;
+  fill: var(--text);
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+
+.node-count-hit {
+  cursor: text;
+
+  rect {
+    fill: transparent;
+  }
+
+  &:hover rect {
+    fill: var(--accent-soft);
+  }
+}
+
+.node-count-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 4px;
+  border: 1.5px solid var(--accent);
+  border-radius: 5px;
+  background: var(--node-bg);
+  color: var(--text);
+  font: 700 16px var(--font);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  outline: none;
+}
+
+.node-mode {
+  cursor: pointer;
+
+  rect {
+    fill: none;
+    stroke: var(--node-border);
+    stroke-width: 1;
+  }
+
+  text {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    fill: var(--text-muted);
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  &--auto rect {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+  }
+
+  &--auto-fallback rect {
+    stroke: var(--accent);
+    stroke-dasharray: 2 2;
+  }
+
+  &--auto text,
+  &--auto-fallback text {
+    fill: var(--accent);
+  }
+
+  &:hover rect {
+    stroke-width: 1.8;
+  }
+}
+
+.node-power {
+  font-size: 10.5px;
+  fill: var(--power);
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+
+.node-port {
+  fill: var(--node-border);
+  stroke: var(--node-bg);
+  stroke-width: 1.2;
+
+  &--open {
+    fill: var(--node-bg);
+    stroke: var(--node-border);
+  }
+
+  &--bad {
+    stroke: var(--danger);
+    stroke-width: 1.6;
+  }
+}

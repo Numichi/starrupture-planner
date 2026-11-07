@@ -1,0 +1,29 @@
+// SummarySection – build cost list, whole-project block, clickable shortage rows.
+
+.cost,
+.project-total {
+  margin-top: 12px;
+}
+
+.cost-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cost-name {
+  flex: 1;
+}
+
+.project-total {
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

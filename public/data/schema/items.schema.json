@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Items",
+  "type": "object",
+  "propertyNames": {
+    "type": "string",
+    "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+  },
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "name"
+    ],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Display name (StarRupture: in English, exactly as in the game)."
+      },
+      "icon": {
+        "type": "string",
+        "description": "Image inside the public/icons/ folder, e.g. items/titanium_ore.png"
+      },
+      "color": {
+        "type": "string",
+        "pattern": "^#[0-9A-Fa-f]{6}$",
+        "description": "Colour (#rrggbb) when there is no icon, and the colour of the lines."
+      },
+      "short": {
+        "type": "string",
+        "maxLength": 3,
+        "description": "1–3 letters for the coloured circle."
+      },
+      "recipes": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "building"
+          ],
+          "oneOf": [
+            { "required": ["output"] },
+            { "required": ["perCycle"] }
+          ],
+          "properties": {
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$",
+              "description": "Unique recipe id (optional)."
+            },
+            "name": {
+              "type": "string",
+              "description": "Recept neve. Alap: az anyag neve."
+            },
+            "building": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$",
+              "description": "Building id (buildings/*.yml)."
+            },
+            "input": {
+              "type": "object",
+              "description": "Inputs in items/min for one building: { item_id: amount }. Missing → a recipe without inputs.",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+              },
+              "additionalProperties": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "output": {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "How much of this item one building makes per minute (at speed 1)."
+            },
+            "byproducts": {
+              "type": "object",
+              "description": "Byproducts in items/min: { item_id: amount }.",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+              },
+              "additionalProperties": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            },
+            "alternate": {
+              "type": "boolean",
+              "description": "true = alternative recipe, switched off by default."
+            },
+            "perCycle": {
+              "type": "object",
+              "description": "Only when the cycle time is NOT known: per-cycle quantities { input: {…}, output: N, byproducts?: {…} }. The factory computes with 0 until the player enters the cycle time manually in the project. Cannot be used together with the output field.",
+              "required": ["output"],
+              "additionalProperties": false,
+              "properties": {
+                "input": {
+                  "type": "object",
+                  "additionalProperties": { "type": "number", "exclusiveMinimum": 0 }
+                },
+                "output": { "type": "number", "exclusiveMinimum": 0 },
+                "byproducts": {
+                  "type": "object",
+                  "additionalProperties": { "type": "number", "exclusiveMinimum": 0 }
+                }
+              }
+            }
+          }
+        },
+        "description": "How it is made. Several = alternatives. A raw material has none: a mine gives it (buildings/*.yml, type: miner)."
+      }
+    }
+  }
+}

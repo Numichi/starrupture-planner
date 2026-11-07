@@ -1,0 +1,136 @@
+# yaml-language-server: $schema=../schema/items.schema.json
+#
+# ITEMS – ADVANCED PRODUCTS (Facturer)
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Every recipe value is items/min for one building; the comment
+# holds the per-cycle source data (x items / s). Fields: docs/CONFIGURATION.md.
+
+biofilament:
+  name: Biofilament
+  icon: items/biofilament.png
+  color: '#a26d63'
+  short: Bi
+  recipes:
+    # Unlock at the Recipe Station: Superconductor x100, Synthetic Protein x400, RNA Stabilizer x300, Substance #FHS-135-493 x800, Data Point x8000
+    - id: biofilament_facturer
+      building: facturer
+      input: { synthetic_protein: 3.75, rna_stabilizer: 3.75, substance_fhs_135_493: 7.5, nanofiber: 15, superconductor: 3.75 }
+      output: 3.75
+      # Facturer: x1 / 16 s
+
+converter:
+  name: Converter
+  icon: items/converter.png
+  color: '#817f7e'
+  short: Co
+  recipes:
+    # Unlock at the Recipe Station: Plastic x800, Laser Emitter x100, RTSC x300, Electromagnetic Coil x600, Data Point x8000
+    - id: converter_facturer
+      building: facturer
+      input: { laser_emitter: 3.75, accumulator: 3.75, electromagnetic_coil: 7.5, plastic: 7.5, rtsc: 3.75 }
+      output: 3.75
+      # Facturer: x1 / 16 s
+
+cyclotrone:
+  name: Cyclotrone
+  icon: items/cyclotrone.png
+  color: '#636869'
+  short: Cy
+  recipes:
+    # Unlock at the Recipe Station: Reinforced Housing x800, Aerogel x800, Plastic Dust x600, Ion Injector x100, Data Point x8000
+    - id: cyclotrone_facturer
+      building: facturer
+      input: { aerogel: 15, electromagnet: 3.75, ion_injector: 7.5, reinforced_housing: 11.25, plastic_dust: 3.75 }
+      output: 3.75
+      # Facturer: x1 / 16 s
+
+rocket_engine:
+  name: Rocket Engine
+  icon: items/rocket_engine.png
+  color: '#676765'
+  short: RE
+  recipes:
+    # Unlock at the Recipe Station: Rocket Fuel x600, Condenser x100, Turbine x400, Pump x300, Data Point x8000
+    - id: rocket_engine_facturer
+      building: facturer
+      input: { nozzle: 15, turbine: 3.75, pump: 7.5, rocket_fuel: 11.25, condenser: 3.75 }
+      output: 3.75
+      # Facturer: x1 / 16 s
+
+tracking_device:
+  name: Tracking Device
+  icon: items/tracking_device.png
+  color: '#6d6a6a'
+  short: TD
+  recipes:
+    - id: tracking_device_facturer
+      building: facturer
+      input: { carbon_sonar: 3.75, quantum_tranquilizer: 3.75, lens: 3.75, onboard_instruments: 11.25, scanner: 3.75 }
+      output: 3.75
+      # Facturer: x1 / 16 s
+
+dome:
+  name: Dome
+  icon: items/dome.png
+  color: '#706f6f'
+  short: Do
+  recipes:
+    # Unlock at the Recipe Station: Scaffolding x500, Converter x300, Condenser x100, Airlock x300, Data Point x8000
+    - id: dome_facturer
+      building: facturer
+      input: { uberfilament: 6, condenser: 3, airlock: 3, scaffolding: 9, converter: 3 }
+      output: 3
+      # Facturer: x1 / 20 s
+
+ion_bomb:
+  name: Ion Bomb
+  icon: items/ion_bomb.png
+  color: '#5f686d'
+  short: IB
+  recipes:
+    # Unlock at the Recipe Station: Tracking Device x200, Ion Injector x100, Ion Stabilizer x400, Explosive Charge x600, Data Point x8000
+    - id: ion_bomb_facturer
+      building: facturer
+      input: { ion_injector: 3, ion_stabilizer: 6, explosive_charge: 9, tracking_device: 3, resonator: 6 }
+      output: 3
+      # Facturer: x1 / 20 s
+
+rtsc_generator:
+  name: RTSC Generator
+  icon: items/rtsc_generator.png
+  color: '#797876'
+  short: RG
+  recipes:
+    # Unlock at the Recipe Station: Anti-Radiation Covers x600, RTSC x400, Cyclotrone x300, Laser Emitter x100, Data Point x8000
+    - id: rtsc_generator_facturer
+      building: facturer
+      input: { rtsc: 3, generator: 6, laser_emitter: 3, anti_radiation_covers: 6, cyclotrone: 3 }
+      output: 3
+      # Facturer: x1 / 20 s
+
+satellite_body:
+  name: Satellite Body
+  icon: items/satellite_body.png
+  color: '#797775'
+  short: SB
+  recipes:
+    # Unlock at the Recipe Station: Rocket Engine x600, Onboard Instruments x800, Scanner x100, Ion Thrusters x400, Data Point x8000
+    - id: satellite_body_facturer
+      building: facturer
+      input: { onboard_instruments: 9, scanner: 3, ion_thrusters: 3, rocket_engine: 3, heat_shield: 9 }
+      output: 3
+      # Facturer: x1 / 20 s
+
+synthetic_dna:
+  name: Synthetic DNA
+  icon: items/synthetic_dna.png
+  color: '#80878d'
+  short: SD
+  recipes:
+    # Unlock at the Recipe Station: Biofilament x200, Synthetic Protein x600, Substance #FHS-135-493 x800, Nanosyringe x300, Data Point x8000
+    - id: synthetic_dna_facturer
+      building: facturer
+      input: { synthetic_protein: 12, substance_fhs_135_493: 6, nanosyringe: 3, plastic: 9, biofilament: 6 }
+      output: 3
+      # Facturer: x1 / 20 s

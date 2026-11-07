@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=../schema/buildings.schema.json
+#
+# BUILDINGS – LOGISTICS AND STORAGE
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Fields: docs/CONFIGURATION.md. In short:
+#   power: MW / building (negative = produces) · cost: build cost / building (pieces)
+#   upgradeOf: upgraded variant (↑) (a placed node on the graph can be upgraded to it)
+#   inheritRecipes: true = also runs the recipes of the base building (the StarRupture v.2
+#   buildings have their own recipe lists, so it is switched on nowhere here)
+#
+# type: dispatcher (throughput) · receiver (railOutputs) · storage (capacity)
+
+# NOT VERIFIED: the source page did not arrive (a list page was saved instead).
+# The power is an assumption based on the Cargo Receiver; the cost is Intermediate Building
+# Material, but the quantity is unknown, so it is not given (the summary shows that).
+cargo_dispatcher:
+  name: Cargo Dispatcher
+  type: dispatcher
+  power: 40
+  icon: buildings/cargo_dispatcher.png
+  # Throughput per feed rail (community measurement: loading a stack of 100 + ~10 s sending).
+  throughput: { v.1: 100, v.2: 171.4, v.3: 266.7 }
+
+cargo_receiver:
+  name: Cargo Receiver
+  type: receiver
+  power: 40
+  icon: buildings/cargo_receiver.png
+  cost: { intermediate_building_material: 80 }
+  # Number of rail outputs (source: Outputs 2).
+  railOutputs: 2
+
+storage_depot_v1:
+  name: Storage Depot v.1
+  type: storage
+  power: 5
+  icon: buildings/storage_depot_v1.png
+  cost: { basic_building_material: 100 }
+  capacity: 400
+
+# Development Station: Quartz Ore x60, Ignitium x25, Data Point x2000.
+storage_depot_v2:
+  name: Storage Depot v.2
+  type: storage
+  upgradeOf: storage_depot_v1
+  power: 5
+  icon: buildings/storage_depot_v2.png
+  cost: { intermediate_building_material: 60 }
+  capacity: 1600
+
+# Sends to the Corporations (value, reputation). Not wired into the planner yet.
+orbital_cargo_launcher:
+  name: Orbital Cargo Launcher
+  power: 10
+  icon: buildings/orbital_cargo_launcher.png
+  maxInputs: 1
+  cost: { basic_building_material: 120 }
+
+# Development Station: Quartz Ore x30, Ignitium x20, Data Point x700.
+orbital_cargo_launcher_v2:
+  name: Orbital Cargo Launcher v.2
+  upgradeOf: orbital_cargo_launcher
+  power: 40
+  icon: buildings/orbital_cargo_launcher_v2.png
+  maxInputs: 4
+  cost: { basic_building_material: 400 }

@@ -1,0 +1,44 @@
+// MissingDataSection – one card per recipe without data, and the list of stale manual values.
+
+.missing-row {
+  padding: 6px 8px;
+  margin: 6px 0;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 12.5px;
+}
+
+.missing-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.missing-io {
+  margin: 3px 0 5px;
+  font-size: 12px;
+}
+
+.cycle-field {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+
+  input {
+    width: 100px;
+  }
+}
+
+.stale-title {
+  margin-top: 10px;
+}
+
+.stale-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 12.5px;
+  margin: 3px 0;
+}

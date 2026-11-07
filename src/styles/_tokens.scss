@@ -1,0 +1,154 @@
+// =============================================================================
+// Design tokens – every colour of the UI as a CSS custom property.
+//
+// Components refer ONLY to these variables (`var(--accent)`), never to raw colours. The
+// values live in two Sass maps (light, dark); the `custom-properties` mixin emits a map as
+// custom properties. The dark theme is emitted twice:
+//
+//   1. `@media (prefers-color-scheme: dark)` – follows the operating system, unless the page
+//      is forced light (`<html data-theme="light">`),
+//   2. `:root[data-theme='dark']`           – forced dark, whatever the system says.
+//
+// A new colour therefore goes into BOTH maps (light and dark) and nowhere else.
+// =============================================================================
+@use 'sass:meta';
+
+/// Theme-independent tokens.
+$common: (
+  font: (
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif,
+  ),
+);
+
+/// Light theme (default).
+$light: (
+  bg: #f4f5f7,
+  surface: #ffffff,
+  surface-2: #f0f1f4,
+  border: #e2e4e9,
+  border-strong: #c5c9d2,
+  text: #1c1f26,
+  text-muted: #687083,
+  accent: #3b6fd9,
+  accent-soft: #e5ecfb,
+  shadow: (
+    0 1px 2px rgba(20, 24, 33, 0.08),
+    0 2px 8px rgba(20, 24, 33, 0.05),
+  ),
+
+  // Graph
+  canvas: #f7f8fa,
+  grid-dot: #d5d8df,
+  edge: #7a8191,
+  label-bg: #ffffff,
+  node-bg: #ffffff,
+  node-border: #bfc4ce,
+  node-header: #e9ecf1,
+  node-title: #1c1f26,
+  output-header: #c9ecd3,
+  surplus-header: #e3e1dc,
+  source-header: #fbe3c2,
+  source-border: #d9902f,
+  power: #b7791f,
+  ok: #2f8a4c,
+  ok-bg: #e2f4e7,
+
+  // States and node kinds
+  warn-bg: #fdf1dc,
+  warn-text: #7a4a0c,
+  error-bg: #fde4e4,
+  error-text: #8a1c1c,
+  danger: #d63c3c,
+  receiver-header: #d8e8fb,
+  mine-header: #e6dccb,
+  dispatcher-header: #fbe6cc,
+  storage-header: #e6e2f3,
+  link-header: #d9f0ea,
+  line-header: #e3e8f7,
+  line-border: #6f86c9,
+  rail-bg: #e4e7ed,
+  rail-text: #3c4352,
+);
+
+/// Dark theme.
+$dark: (
+  bg: #14161b,
+  surface: #1b1e24,
+  surface-2: #252932,
+  border: #2e333d,
+  border-strong: #464c59,
+  text: #e6e8ec,
+  text-muted: #949bab,
+  accent: #7ea2f0,
+  accent-soft: #26324d,
+  shadow: (
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 2px 8px rgba(0, 0, 0, 0.25),
+  ),
+
+  // Graph
+  canvas: #111317,
+  grid-dot: #2a2e37,
+  edge: #8a91a1,
+  label-bg: #1b1e24,
+  node-bg: #1d2027,
+  node-border: #424857,
+  node-header: #2a2f39,
+  node-title: #e6e8ec,
+  output-header: #1f4a2e,
+  surplus-header: #3a3833,
+  source-header: #5a3f17,
+  source-border: #d9902f,
+  power: #e3b34f,
+  ok: #5cc483,
+  ok-bg: #183424,
+
+  // States and node kinds
+  warn-bg: #3a2c12,
+  warn-text: #f2cf8f,
+  error-bg: #461b1e,
+  error-text: #f6b4b4,
+  danger: #f06262,
+  receiver-header: #1e3550,
+  mine-header: #4a3b25,
+  dispatcher-header: #4a3418,
+  storage-header: #352f4a,
+  link-header: #1b3d36,
+  line-header: #232c45,
+  line-border: #7e96dc,
+  rail-bg: #343a46,
+  rail-text: #d5d9e1,
+);
+
+/// Emits a token map as CSS custom properties (`--<name>: <value>`). `meta.inspect` keeps
+/// the values exactly as written (quoted font names, comma-separated shadows).
+@mixin custom-properties($tokens) {
+  @each $name, $value in $tokens {
+    --#{$name}: #{meta.inspect($value)};
+  }
+}
+
+:root {
+  color-scheme: light;
+
+  @include custom-properties($common);
+  @include custom-properties($light);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+
+    @include custom-properties($dark);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  @include custom-properties($dark);
+}

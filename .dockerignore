@@ -1,0 +1,9 @@
+# A build környezetből kimarad (gyorsabb build, kisebb kontextus).
+node_modules
+dist
+docs
+*.log
+*.zip
+.DS_Store
+.git
+.vscode

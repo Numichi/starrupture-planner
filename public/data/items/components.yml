@@ -1,0 +1,541 @@
+# yaml-language-server: $schema=../schema/items.schema.json
+#
+# ITEMS – COMPONENTS
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Every recipe value is items/min for one building; the comment
+# holds the per-cycle source data (x items / s). Fields: docs/CONFIGURATION.md.
+#
+# An item without a recipe comes from a mine (buildings/extraction.yml), or there is no
+# data yet about the building that makes it – then bring it with a Receiver or an incoming rail.
+
+rotor:
+  name: Rotor
+  icon: items/rotor.png
+  color: '#805b4d'
+  short: Ro
+  recipes:
+    # Unlock at the Recipe Station: Rotor - Blueprint x1, Wolfram Wire x300, Titanium Rod x400, Data Point x400
+    - id: rotor_fabricator
+      building: fabricator
+      input: { titanium_rod: 20, wolfram_wire: 20 }
+      output: 20
+      # Fabricator: x2 / 6 s
+    - id: rotor_fabricator_v2
+      building: fabricator_v2
+      input: { titanium_rod: 30, wolfram_wire: 30 }
+      output: 40
+      # Fabricator v.2: x4 / 6 s
+
+stator:
+  name: Stator
+  icon: items/stator.png
+  color: '#80624d'
+  short: St
+  recipes:
+    # Unlock at the Recipe Station: Stator - Blueprint x1, Titanium Housing x300, Wolfram Wire x300, Data Point x600
+    - id: stator_fabricator
+      building: fabricator
+      input: { titanium_housing: 40, wolfram_wire: 20 }
+      output: 20
+      # Fabricator: x1 / 3 s
+    - id: stator_fabricator_v2
+      building: fabricator_v2
+      input: { titanium_housing: 40, wolfram_wire: 40 }
+      output: 40
+      # Fabricator v.2: x2 / 3 s
+
+stabilizer:
+  name: Stabilizer
+  icon: items/stabilizer.png
+  color: '#9b9895'
+  short: St
+  recipes:
+    # Unlock at the Recipe Station: Stabilizer - Blueprint x1, Rotor x100, Titanium Rod x300, Data Point x600
+    - id: stabilizer_fabricator
+      building: fabricator
+      input: { rotor: 20, titanium_rod: 40 }
+      output: 20
+      # Fabricator: x1 / 3 s
+    - id: stabilizer_fabricator_v2
+      building: fabricator_v2
+      input: { rotor: 20, titanium_rod: 60 }
+      output: 60
+      # Fabricator v.2: x3 / 3 s
+
+inductor:
+  name: Inductor
+  icon: items/inductor.png
+  color: '#8b5341'
+  short: In
+  recipes:
+    # Unlock at the Recipe Station: Tube x600, Wolfram Wire x300, Ceramics x600, Data Point x600
+    - id: inductor_furnace
+      building: furnace
+      input: { tube: 30, wolfram_wire: 15, ceramics: 30 }
+      output: 30
+      # Furnace: x2 / 4 s
+    - id: inductor_furnace_v2
+      building: furnace_v2
+      input: { tube: 60, wolfram_wire: 30, ceramics: 30 }
+      output: 60
+      # Furnace v.2: x4 / 4 s
+
+applicator:
+  name: Applicator
+  icon: items/applicator.png
+  color: '#757776'
+  short: Ap
+  recipes:
+    # Unlock at the Recipe Station: Tube x600, Glass x200, Data Point x800
+    - id: applicator_fabricator
+      building: fabricator
+      input: { tube: 90, glass: 30 }
+      output: 30
+      # Fabricator: x2 / 4 s
+    - id: applicator_fabricator_v2
+      building: fabricator_v2
+      input: { tube: 150, glass: 45 }
+      output: 60
+      # Fabricator v.2: x4 / 4 s
+
+electronics:
+  name: Electronics
+  icon: items/electronics.png
+  color: '#a7996c'
+  short: El
+  recipes:
+    # Unlock at the Recipe Station: Electronics - Blueprint x1, Synthetic Silicon x600, Inductor x200, Stator x200, Data Point x800
+    - id: electronics_furnace
+      building: furnace
+      input: { synthetic_silicon: 20, inductor: 10, stator: 10 }
+      output: 10
+      # Furnace: x1 / 6 s
+    - id: electronics_furnace_v2
+      building: furnace_v2
+      input: { synthetic_silicon: 20, inductor: 20, stator: 10 }
+      output: 30
+      # Furnace v.2: x3 / 6 s
+
+supermagnet:
+  name: Supermagnet
+  icon: items/supermagnet.png
+  color: '#676665'
+  short: Su
+  recipes:
+    # Unlock at the Recipe Station: Chemicals x600, Wolfram Plate x800, Sulfuric Acid x1500, Data Point x1000
+    - id: supermagnet_furnace
+      building: furnace
+      input: { sulfuric_acid: 60, wolfram_plate: 60, chemicals: 20 }
+      output: 20
+      # Furnace: x1 / 3 s
+    - id: supermagnet_furnace_v2
+      building: furnace_v2
+      input: { sulfuric_acid: 80, wolfram_plate: 80, chemicals: 40 }
+      output: 40
+      # Furnace v.2: x2 / 3 s
+
+impeller:
+  name: Impeller
+  icon: items/impeller.png
+  color: '#666666'
+  short: Im
+  recipes:
+    - id: impeller_mega_press
+      building: mega_press
+      input: { titanium_rod: 30, heat_resistant_sheet: 30, wolfram_plate: 15, stabilizer: 15 }
+      output: 15
+      # Mega Press: x1 / 4 s
+
+nozzle:
+  name: Nozzle
+  icon: items/nozzle.png
+  color: '#666765'
+  short: No
+  recipes:
+    # Unlock at the Recipe Station: Heat Resistant Sheet x200, Helium-3 x2000, Stabilizer x100, Data Point x800
+    - id: nozzle_mega_press
+      building: mega_press
+      input: { heat_resistant_sheet: 20, helium_3: 60, stabilizer: 10 }
+      output: 20
+      # Mega Press: x2 / 6 s
+
+battery:
+  name: Battery
+  icon: items/battery.png
+  color: '#6d6d6b'
+  short: Ba
+  recipes:
+    # Unlock at the Recipe Station: Electronics x200, Inductor x300, Sulfuric Acid x1500, Data Point x1000
+    - id: battery_mega_press
+      building: mega_press
+      input: { inductor: 30, electronics: 15, sulfuric_acid: 15 }
+      output: 15
+      # Mega Press: x1 / 4 s
+
+turbine:
+  name: Turbine
+  icon: items/turbine.png
+  color: '#676665'
+  short: Tu
+  recipes:
+    # Unlock at the Recipe Station: Turbine - Blueprint x1, Impeller x200, Stator x300, Rotor x200, Data Point x1000
+    - id: turbine_mega_press
+      building: mega_press
+      input: { impeller: 10, stator: 10, rotor: 20, sulfuric_acid: 20 }
+      output: 10
+      # Mega Press: x1 / 6 s
+
+valve:
+  name: Valve
+  icon: items/valve.png
+  color: '#7c726e'
+  short: Va
+  recipes:
+    # Unlock at the Recipe Station: Valve - Blueprint x1, Nozzle x200, Titanium Housing x400, Titanium Rod x300, Data Point x1000
+    - id: valve_mega_press
+      building: mega_press
+      input: { titanium_housing: 10, titanium_beam: 30, titanium_rod: 20, nozzle: 10 }
+      output: 10
+      # Mega Press: x1 / 6 s
+
+electromagnetic_coil:
+  name: Electromagnetic Coil
+  icon: items/electromagnetic_coil.png
+  color: '#656766'
+  short: EC
+  recipes:
+    # Unlock at the Recipe Station: Electromagnetic Coil - Blueprint x1, Supermagnet x400, Inductor x400, Pressurized Helium x600, Data Point x1500
+    - id: electromagnetic_coil_mega_press
+      building: mega_press
+      input: { inductor: 15, pressurized_helium: 15, wolfram_plate: 90, supermagnet: 15 }
+      output: 30
+      # Mega Press: x2 / 4 s
+
+pump:
+  name: Pump
+  icon: items/pump.png
+  color: '#7a7876'
+  short: Pu
+  recipes:
+    # Unlock at the Recipe Station: Valve x100, Impeller x300, Turbine x200, Sulfuric Acid x1500, Data Point x1500
+    - id: pump_mega_press
+      building: mega_press
+      input: { valve: 10, turbine: 10, impeller: 10, sulfuric_acid: 20 }
+      output: 10
+      # Mega Press: x1 / 6 s
+
+heat_shield:
+  name: Heat Shield
+  icon: items/heat_shield.png
+  color: '#9f9e9d'
+  short: HS
+  recipes:
+    # Unlock at the Recipe Station: Heat Shield - Blueprint x1, Aerogel x400, Uberfilament x400, Reinforced Frame x500, Data Point x4000
+    - id: heat_shield_mega_press
+      building: mega_press
+      # No cycle time data: only the per-cycle quantities are known, the factory
+      # computes with 0. Until the data is updated, it can be entered in the UI
+      # (Missing data, or the factory editor).
+      perCycle: { input: { epoxy: 2, aerogel: 2, uberfilament: 1, reinforced_frame: 1 }, output: 2 }
+
+ion_stabilizer:
+  name: Ion Stabilizer
+  icon: items/ion_stabilizer.png
+  color: '#676765'
+  short: IS
+  recipes:
+    # Unlock at the Recipe Station: Onboard Instruments x200, Liquid Helium x400, Explosive Charge x300, Data Point x4000
+    - id: ion_stabilizer_mega_press
+      building: mega_press
+      input: { epoxy: 7.5, liquid_helium: 22.5, onboard_instruments: 7.5, explosive_charge: 7.5 }
+      output: 7.5
+      # Mega Press: x1 / 8 s
+
+onboard_instruments:
+  name: Onboard Instruments
+  icon: items/onboard_instruments.png
+  color: '#656567'
+  short: OI
+  recipes:
+    # Unlock at the Recipe Station: Electronics x600, Stabilizer x800, Reinforced Housing x1000, Data Point x2000
+    - id: onboard_instruments_assembler
+      building: assembler
+      input: { electronics: 10, stabilizer: 20, reinforced_housing: 10 }
+      output: 20
+      # Assembler: x2 / 6 s
+
+accumulator:
+  name: Accumulator
+  icon: items/accumulator.png
+  color: '#726e69'
+  short: Ac
+  recipes:
+    - id: accumulator_assembler
+      building: assembler
+      input: { electronics: 10, stator: 20, battery: 10 }
+      output: 10
+      # Assembler: x1 / 6 s
+
+generator:
+  name: Generator
+  icon: items/generator.png
+  color: '#83817f'
+  short: Ge
+  recipes:
+    # Unlock at the Recipe Station: Turbine x200, Nozzle x300, Battery x400, Data Point x1500
+    - id: generator_assembler
+      building: assembler
+      input: { turbine: 10, battery: 10, nozzle: 10 }
+      output: 10
+      # Assembler: x1 / 6 s
+
+electromagnet:
+  name: Electromagnet
+  icon: items/electromagnet.png
+  color: '#805c4d'
+  short: El
+  recipes:
+    # Unlock at the Recipe Station: Electromagnetic Coil x200, Synthetic Resin x400, Accumulator x200, Data Point x2000
+    - id: electromagnet_assembler
+      building: assembler
+      input: { electromagnetic_coil: 30, synthetic_resin: 30, accumulator: 10 }
+      output: 10
+      # Assembler: x1 / 6 s
+
+pressure_tank:
+  name: Pressure Tank
+  icon: items/pressure_tank.png
+  color: '#9c9c9b'
+  short: PT
+  recipes:
+    # Unlock at the Recipe Station: Pump x100, Valve x100, Heat Resistant Sheet x300, Data Point x2000
+    - id: pressure_tank_assembler
+      building: assembler
+      input: { heat_resistant_sheet: 20, valve: 10, pump: 5 }
+      output: 5
+      # Assembler: x1 / 12 s
+
+resonator:
+  name: Resonator
+  icon: items/resonator.png
+  color: '#686764'
+  short: Re
+  recipes:
+    # Unlock at the Recipe Station: Accumulator x200, Generator x100, Liquid Helium x400, Data Point x2000
+    - id: resonator_assembler
+      building: assembler
+      input: { accumulator: 5, generator: 5, liquid_helium: 10 }
+      output: 5
+      # Assembler: x1 / 12 s
+
+condenser:
+  name: Condenser
+  icon: items/condenser.png
+  color: '#767573'
+  short: Co
+  recipes:
+    # Unlock at the Recipe Station: Condenser - Blueprint x1, Resonator x200, Nanofiber x300, Pump x100, Data Point x3000
+    - id: condenser_assembler
+      building: assembler
+      input: { resonator: 5, pump: 5, nanofiber: 20 }
+      output: 5
+      # Assembler: x1 / 12 s
+    - id: condenser_constructorizer_v2
+      building: constructorizer_v2
+      input: { resonator: 5, pump: 10, nanofiber: 40 }
+      output: 10
+      # Constructorizer v.2: x2 / 12 s
+
+laser_emitter:
+  name: Laser Emitter
+  icon: items/laser_emitter.png
+  color: '#686664'
+  short: LE
+  recipes:
+    # Unlock at the Recipe Station: Resonator x200, Electromagnetic Coil x300, Lens x200, Data Point x3000
+    - id: laser_emitter_assembler
+      building: assembler
+      input: { lens: 7.5, resonator: 7.5, electromagnetic_coil: 22.5 }
+      output: 7.5
+      # Assembler: x1 / 8 s
+    - id: laser_emitter_constructorizer_v2
+      building: constructorizer_v2
+      input: { lens: 15, resonator: 7.5, electromagnetic_coil: 30 }
+      output: 15
+      # Constructorizer v.2: x2 / 8 s
+
+scanner:
+  name: Scanner
+  icon: items/scanner.png
+  color: '#7e8182'
+  short: Sc
+  recipes:
+    # Unlock at the Recipe Station: Lens x400, Generator x100, Stabilizer x400, Data Point x3000
+    - id: scanner_assembler
+      building: assembler
+      input: { lens: 10, generator: 5, stabilizer: 30 }
+      output: 5
+      # Assembler: x1 / 12 s
+    - id: scanner_constructorizer_v2
+      building: constructorizer_v2
+      input: { lens: 30, generator: 10, stabilizer: 40 }
+      output: 10
+      # Constructorizer v.2: x2 / 12 s
+
+pseudorubber_insulator:
+  name: Pseudorubber Insulator
+  icon: items/pseudorubber_insulator.png
+  color: '#666666'
+  short: PI
+  recipes:
+    # Unlock at the Recipe Station: Plastic x800, Epoxy x600, Goethite Lattice x400, Data Point x4000
+    - id: pseudorubber_insulator_assembler
+      building: assembler
+      input: { plastic: 15, epoxy: 10, goethite_lattice: 15 }
+      output: 10
+      # Assembler: x2 / 12 s
+
+ion_injector:
+  name: Ion Injector
+  icon: items/ion_injector.png
+  color: '#646668'
+  short: II
+  recipes:
+    # Unlock at the Recipe Station: Applicator x400, Pressure Tank x100, Electromagnet x200, Data Point x3000
+    - id: ion_injector_compounder
+      building: compounder
+      input: { applicator: 20, electromagnet: 5, pressure_tank: 5 }
+      output: 5
+      # Compounder: x1 / 12 s
+    - id: ion_injector_constructorizer_v2
+      building: constructorizer_v2
+      input: { applicator: 40, electromagnet: 10, pressure_tank: 5 }
+      output: 10
+      # Constructorizer v.2: x2 / 12 s
+
+superconductor:
+  name: Superconductor
+  icon: items/superconductor.png
+  color: '#6e665e'
+  short: Su
+  recipes:
+    # Unlock at the Recipe Station: Electromagnet x300, Supermagnet x400, Synthetic Resin x1000, Data Point x3000
+    - id: superconductor_compounder
+      building: compounder
+      input: { synthetic_resin: 40, electromagnet: 10, supermagnet: 40 }
+      output: 10
+      # Compounder: x1 / 6 s
+    - id: superconductor_constructorizer_v2
+      building: constructorizer_v2
+      input: { synthetic_resin: 60, electromagnet: 20, supermagnet: 80 }
+      output: 20
+      # Constructorizer v.2: x2 / 6 s
+
+quantum_tranquilizer:
+  name: Quantum Tranquilizer
+  icon: items/quantum_tranquilizer.png
+  color: '#846f4f'
+  short: QT
+  recipes:
+    # Unlock at the Recipe Station: Ion Stabilizer x300, Supermagnet x300, Plastic Dust x600, Data Point x6000
+    - id: quantum_tranquilizer_constructorizer
+      building: constructorizer
+      input: { ion_stabilizer: 5, supermagnet: 5, plastic_dust: 5, sulfuric_acid: 10 }
+      output: 5
+      # Constructorizer: x1 / 12 s
+
+anti_radiation_covers:
+  name: Anti-Radiation Covers
+  icon: items/anti_radiation_covers.png
+  color: '#878481'
+  short: ARC
+  recipes:
+    # Unlock at the Recipe Station: Anti-Radiation Covers - Blueprint x1, Reinforced Housing x500, Reinforced Frame x500, Pseudorubber Insulator x300, Data Point x6000
+    - id: anti_radiation_covers_constructorizer
+      building: constructorizer
+      # No cycle time data: only the per-cycle quantities are known, the factory
+      # computes with 0. Until the data is updated, it can be entered in the UI
+      # (Missing data, or the factory editor).
+      perCycle: { input: { reinforced_housing: 2, reinforced_frame: 1, pseudorubber_insulator: 1, epoxy: 2 }, output: 1 }
+
+nanosyringe:
+  name: Nanosyringe
+  icon: items/nanosyringe.png
+  color: '#8c8d8c'
+  short: Na
+  recipes:
+    # Unlock at the Recipe Station: Nanosyringe - Blueprint x1, Substance #FHS-135-493 x500, Applicator x600, Nanofiber x400, Data Point x6000
+    - id: nanosyringe_constructorizer
+      building: constructorizer
+      # No cycle time data: only the per-cycle quantities are known, the factory
+      # computes with 0. Until the data is updated, it can be entered in the UI
+      # (Missing data, or the factory editor).
+      perCycle: { input: { hardening_agent: 1, applicator: 2, nanofiber: 4, substance_fhs_135_493: 1 }, output: 1 }
+
+airlock:
+  name: Airlock
+  icon: items/airlock.png
+  color: '#807d7a'
+  short: Ai
+  recipes:
+    # Unlock at the Recipe Station: Pseudorubber Insulator x200, Scaffolding x600, Pressure Tank x300, Uberfilament x400, Data Point x6000
+    - id: airlock_constructorizer
+      building: constructorizer
+      input: { scaffolding: 5, pressure_tank: 5, uberfilament: 5, pseudorubber_insulator: 5 }
+      output: 5
+      # Constructorizer: x1 / 12 s
+
+carbon_sonar:
+  name: Carbon Sonar
+  icon: items/carbon_sonar.png
+  color: '#676765'
+  short: CS
+  recipes:
+    # Unlock at the Recipe Station: Onboard Instruments x200, Ion Stabilizer x300, Quantum Tranquilizer x300, Accumulator x400, Data Point x6000
+    - id: carbon_sonar_constructorizer
+      building: constructorizer
+      input: { ion_stabilizer: 5, quantum_tranquilizer: 5, accumulator: 10, onboard_instruments: 15 }
+      output: 5
+      # Constructorizer: x1 / 12 s
+
+rtsc:
+  name: RTSC
+  icon: items/rtsc.png
+  color: '#664d80'
+  short: RT
+  recipes:
+    # Unlock at the Recipe Station: Pseudorubber Insulator x200, Anti-Radiation Covers x500, Heat Shield x600, Aerogel x400, Data Point x6000
+    - id: rtsc_constructorizer
+      building: constructorizer
+      # No cycle time data: only the per-cycle quantities are known, the factory
+      # computes with 0. Until the data is updated, it can be entered in the UI
+      # (Missing data, or the factory editor).
+      perCycle: { input: { anti_radiation_covers: 1, heat_shield: 2, aerogel: 2, pseudorubber_insulator: 1 }, output: 1 }
+
+rna_stabilizer:
+  name: RNA Stabilizer
+  icon: items/rna_stabilizer.png
+  color: '#73766f'
+  short: RS
+  recipes:
+    # Unlock at the Recipe Station: Plastic x800, Organic Compound x600, Nanosyringe x200, Synthetic Protein x400, Data Point x6000
+    - id: rna_stabilizer_constructorizer
+      building: constructorizer
+      input: { organic_compound: 10, nanosyringe: 5, synthetic_protein: 10, plastic: 10 }
+      output: 5
+      # Constructorizer: x1 / 12 s
+
+ion_thrusters:
+  name: Ion Thrusters
+  icon: items/ion_thrusters.png
+  color: '#6b6a69'
+  short: IT
+  recipes:
+    # Unlock at the Recipe Station: Rocket Fuel x600, Valve x400, Heat Shield x600, Pressure Tank x400, Data Point x6000
+    - id: ion_thrusters_constructorizer
+      building: constructorizer
+      # No cycle time data: only the per-cycle quantities are known, the factory
+      # computes with 0. Until the data is updated, it can be entered in the UI
+      # (Missing data, or the factory editor).
+      perCycle: { input: { valve: 1, heat_shield: 1, pressure_tank: 1, rocket_fuel: 1 }, output: 1 }

@@ -1,0 +1,29 @@
+# GYÁRTÁSTERVEZŐ – indítás egy paranccsal:
+#
+#   docker compose up -d --build        build + indítás a háttérben
+#   → http://localhost:8080
+#
+#   PORT=9000 docker compose up -d      másik porton
+#   docker compose logs -f              napló
+#   docker compose down                 leállítás
+#
+# Részletek: INSTALL.md
+
+services:
+  gyartas-tervezo:
+    build:
+      context: .
+      args:
+        NODE_VERSION: "22"
+    image: gyartas-tervezo:latest
+    container_name: gyartas-tervezo
+    ports:
+      - "${PORT:-8080}:80"
+    # Az adatfájlok és ikonok a gépedről jönnek (csak olvasva): ha a public/data/
+    # vagy public/icons/ alatt módosítasz, a felületen az "Újratöltés" gomb
+    # behozza, újrabuildelés nélkül. Ha a képbe épített adatot akarod használni,
+    # töröld ezt a két sort.
+    volumes:
+      - ./public/data:/usr/share/nginx/html/data:ro
+      - ./public/icons:/usr/share/nginx/html/icons:ro
+    restart: unless-stopped

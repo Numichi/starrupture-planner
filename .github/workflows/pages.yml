@@ -1,0 +1,102 @@
+# =============================================================================
+# GitHub Pages – check, build and publish the planner as a static site.
+#
+#   push to main, manual run   checks + production build + deploy to GitHub Pages
+#   pull request               the same checks and build, without deploying
+#
+# One-time setup in the repository: Settings → Pages → Build and deployment →
+# Source: "GitHub Actions". The site is then served at
+#   https://<owner>.github.io/<repository>/
+# No path setting is needed: vite.config.ts builds with `base: './'`, so the app works
+# from any sub-path. The data files (data/*.yml) and icons are part of the site.
+#
+# Actions are pinned to a full commit SHA (the release is in the comment); Dependabot
+# (.github/dependabot.yml) proposes the updates.
+# =============================================================================
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Least privilege: the build only reads the repository; the deploy job asks for more.
+permissions:
+  contents: read
+
+# One run per branch / pull request. A new push cancels the checks of an older pull
+# request run, but never a deployment that is already running on main.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # The current Node.js LTS. The project supports >= 22.12 (package.json › engines).
+  NODE_VERSION: '26'
+
+jobs:
+  build:
+    name: Check and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check formatting (Prettier)
+        run: npm run format:check
+
+      - name: Lint (ESLint)
+        run: npm run lint
+
+      - name: Engine smoke test
+        run: npm run smoke
+
+      # vue-tsc type check, then the Vite production build into dist/.
+      - name: Build
+        run: npm run build
+
+      - name: Upload the site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    # Only main is published (manual runs on other branches only check and build).
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    permissions:
+      pages: write # publish the artifact to Pages
+      id-token: write # prove that the deployment comes from this workflow
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Deployments run one after the other and are never cancelled half-way.
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

@@ -1,0 +1,764 @@
+// =============================================================================
+// Shared panel and editor styles.
+//
+// The sections of the side panel (components/panel/*) and the editors (EntityEditor and
+// its children: RailLineEditor, LinkEditor) use the same classes, so they are defined here
+// once instead of per component (scoped).
+// =============================================================================
+
+/// Shared look of a text button without fill (border optional).
+@mixin plain-button($color: var(--accent), $font-size: 12.5px) {
+  border-radius: 6px;
+  background: transparent;
+  color: $color;
+  font: inherit;
+  font-size: $font-size;
+  cursor: pointer;
+}
+
+/// Single-line text that ends with "…" when it does not fit.
+@mixin ellipsis {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ---------- Panel frame ----------
+
+.panel {
+  height: 100%;
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 0 18px 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  section {
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+  }
+}
+
+.panel-header {
+  padding: 18px 0 6px;
+
+  p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+}
+
+.panel,
+.editor {
+  code {
+    font-size: 11.5px;
+  }
+
+  h2 {
+    display: inline;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+}
+
+.data-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.panel section > h2,
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+/// Small figure next to a section title (e.g. the total power of the bases).
+.section-meta {
+  font-size: 12px;
+}
+
+// ---------- Form controls ----------
+
+.panel,
+.editor {
+  select,
+  input[type='number'],
+  input[type='text'] {
+    height: 30px;
+    padding: 0 6px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface-2);
+    color: var(--text);
+    font: inherit;
+    font-size: 13px;
+    min-width: 0;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+
+  > span:first-child {
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+
+  select,
+  input {
+    width: 100%;
+  }
+}
+
+.field-label {
+  font-size: 12.5px;
+  margin-bottom: 6px;
+}
+
+.hint {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.nodata-tag {
+  margin-left: 4px;
+  color: var(--power);
+  font-weight: 700;
+  cursor: help;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+// ---------- Buttons ----------
+
+// Icon buttons keep the browser's button font (emoji glyphs), so no `plain-button` here.
+.icon-btn {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 15px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--surface-2);
+    color: var(--text);
+  }
+}
+
+.add-btn {
+  @include plain-button;
+
+  padding: 5px 10px;
+  border: 1px dashed var(--border-strong);
+
+  &:hover {
+    background: var(--surface-2);
+  }
+}
+
+.link-btn {
+  @include plain-button(var(--accent), 12px);
+
+  padding: 3px 8px;
+  border: 1px solid var(--border);
+
+  &:hover:not(:disabled) {
+    background: var(--surface-2);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+}
+
+.danger-btn {
+  @include plain-button(var(--danger));
+
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+
+  &:hover {
+    background: var(--error-bg);
+  }
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+// ---------- Segmented control ----------
+
+.segmented {
+  display: flex;
+  padding: 3px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+
+  button {
+    @include plain-button(var(--text-muted));
+
+    flex: 1;
+    height: 28px;
+    border: 0;
+
+    &.active {
+      background: var(--surface);
+      color: var(--text);
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+  }
+}
+
+.seg-sub {
+  font-size: 10.5px;
+  opacity: 0.7;
+}
+
+// Two-line buttons (e.g. purity + rate).
+.segmented--tall button {
+  height: auto;
+  min-height: 28px;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.25;
+}
+
+.field .segmented {
+  margin-bottom: 0;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.slider {
+  display: block;
+  margin-top: 10px;
+  font-size: 12.5px;
+
+  span {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  em {
+    font-style: normal;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  input {
+    width: 100%;
+    accent-color: var(--accent);
+  }
+}
+
+// ---------- Base list ----------
+
+.base-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.base-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 13px;
+
+  &:hover {
+    background: var(--surface-2);
+  }
+
+  &.active {
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .folder {
+    flex: none;
+    font-size: 14px;
+  }
+
+  .base-name {
+    @include ellipsis;
+
+    flex: 1;
+  }
+
+  input {
+    flex: 1;
+    height: 26px !important;
+  }
+
+  .base-meta {
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .icon-btn {
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+    visibility: hidden;
+  }
+
+  &:hover .icon-btn,
+  &.active .icon-btn {
+    visibility: visible;
+  }
+}
+
+// ---------- Targets ----------
+
+.target-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+
+  select {
+    flex: 1;
+  }
+
+  input {
+    width: 68px;
+    text-align: right;
+  }
+}
+
+.unit {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+// ---------- Summary ----------
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stat {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.stat-value {
+  font-size: 19px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+
+  &--power {
+    color: var(--power);
+  }
+}
+
+.stat-label {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+.buildings {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+
+  th {
+    padding: 4px 0;
+    font-weight: 500;
+    font-size: 11.5px;
+    color: var(--text-muted);
+    text-align: right;
+    border-bottom: 1px solid var(--border);
+
+    &:first-child {
+      text-align: left;
+    }
+  }
+
+  td {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
+
+    &.num {
+      padding-left: 8px;
+    }
+  }
+}
+
+.callout {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 12.5px;
+
+  &--ok {
+    background: var(--ok-bg);
+  }
+
+  &--warn {
+    background: var(--warn-bg);
+    color: var(--warn-text);
+  }
+
+  &--error {
+    background: var(--error-bg);
+    color: var(--error-text);
+  }
+}
+
+.io-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+}
+
+.warning-line {
+  display: block;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+// ---------- Entity lists (nodes section) ----------
+
+.entity-group + .entity-group {
+  margin-top: 12px;
+}
+
+.entity-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.entity-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--surface-2);
+  }
+
+  &.selected {
+    background: var(--accent-soft);
+  }
+}
+
+.entity-name {
+  @include ellipsis;
+
+  flex: 1;
+}
+
+.entity-meta {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+
+  &.bad {
+    color: var(--danger);
+    font-weight: 600;
+  }
+}
+
+.entity-empty {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 2px 6px;
+}
+
+// ---------- Drone rails ----------
+
+.rail-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.rail-chip {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 8px;
+  background: var(--rail-bg);
+  color: var(--rail-text);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+
+  &--bad {
+    background: var(--danger);
+    color: #fff;
+  }
+}
+
+.flow-details {
+  margin-top: 10px;
+
+  summary {
+    font-size: 12.5px;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+}
+
+.flow-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12.5px;
+
+  select {
+    height: 26px !important;
+    width: 104px;
+    font-size: 12px !important;
+  }
+}
+
+.flow-name {
+  @include ellipsis;
+
+  flex: 1;
+}
+
+// ---------- Recipes, buildings ----------
+
+.panel summary {
+  cursor: pointer;
+  list-style-position: inside;
+  margin-bottom: 4px;
+}
+
+.recipe {
+  display: flex;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+
+  input {
+    margin-top: 2px;
+  }
+}
+
+.recipe-body {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.recipe-name {
+  font-size: 13px;
+}
+
+.recipe-io {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.arrow {
+  margin: 0 3px;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.recipe-building {
+  font-size: 11.5px;
+}
+
+.io-amount {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  margin-right: 4px;
+  font-size: 11.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.io-unit {
+  font-size: 11px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0 5px;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 10.5px;
+  font-weight: 600;
+  vertical-align: 1px;
+}
+
+.building-icon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 6px;
+}
+
+.building-stats {
+  font-size: 11.5px;
+}
+
+// ---------- Item checklist (editor) ----------
+
+.item-checklist {
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 8px;
+
+  .check {
+    margin: 4px 0;
+    font-size: 12.5px;
+  }
+
+  .group-label {
+    margin: 6px 0 2px;
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+// ---------- Editor status box (EntityEditor and its children: RailLineEditor, LinkEditor) ----------
+
+.editor-status {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 8px 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+
+  .warn {
+    color: var(--warn-text);
+    font-weight: 600;
+  }
+}
+
+.editor-status .bad,
+.hint.bad {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+// Load meter of a rail (RailLineEditor, LinkEditor): track + fill, amber with parallel rails, red on congestion.
+.meter {
+  height: 6px;
+  margin: 6px 0 4px;
+  border-radius: 3px;
+  background: var(--rail-bg);
+  overflow: hidden;
+
+  > div {
+    height: 100%;
+    border-radius: 3px;
+    background: var(--line-border);
+  }
+
+  &--warn > div {
+    background: var(--warn-text);
+  }
+
+  &--bad > div {
+    background: var(--danger);
+  }
+}
+
+// A congested editor status box.
+.editor-status.status--bad {
+  background: var(--error-bg);
+}
+
+.warn-line {
+  color: var(--warn-text);
+}

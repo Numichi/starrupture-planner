@@ -1,0 +1,133 @@
+# yaml-language-server: $schema=../schema/buildings.schema.json
+#
+# BUILDINGS – PRODUCTION
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Fields: docs/CONFIGURATION.md. In short:
+#   power: MW / building (negative = produces) · cost: build cost / building (pieces)
+#   upgradeOf: upgraded variant (↑) (a placed node on the graph can be upgraded to it)
+#   inheritRecipes: true = also runs the recipes of the base building (the StarRupture v.2
+#   buildings have their own recipe lists, so it is switched on nowhere here)
+
+smelter:
+  name: Smelter
+  power: 5
+  icon: buildings/smelter.png
+  maxInputs: 1
+  cost: { basic_building_material: 100 }
+
+furnace:
+  name: Furnace
+  power: 20
+  icon: buildings/furnace.png
+  maxInputs: 3
+  cost: { basic_building_material: 200 }
+
+# Development Station: Quartz Ore x80, Ignitium x20, Data Point x4000.
+# Its own, faster recipes (it does not inherit the Furnace recipes).
+furnace_v2:
+  name: Furnace v.2
+  upgradeOf: furnace
+  power: 50
+  icon: buildings/furnace_v2.png
+  maxInputs: 4
+  cost: { basic_building_material: 450 }
+
+fabricator:
+  name: Fabricator
+  power: 10
+  icon: buildings/fabricator.png
+  maxInputs: 2
+  cost: { basic_building_material: 140 }
+
+# Its own, faster recipes (it does not inherit the Fabricator recipes).
+fabricator_v2:
+  name: Fabricator v.2
+  upgradeOf: fabricator
+  power: 25
+  icon: buildings/fabricator_v2.png
+  maxInputs: 3
+  cost: { basic_building_material: 350 }
+
+mega_press:
+  name: Mega Press
+  power: 30
+  icon: buildings/mega_press.png
+  maxInputs: 4
+  cost: { intermediate_building_material: 80 }
+
+pressurizer:
+  name: Pressurizer
+  power: 40
+  icon: buildings/pressurizer.png
+  maxInputs: 2
+  cost: { intermediate_building_material: 90 }
+
+refinery:
+  name: Refinery
+  power: 150
+  icon: buildings/refinery.png
+  maxInputs: 3
+  cost: { intermediate_building_material: 200 }
+
+# Unlock: Selenian Corporation reputation.
+pyro_forge:
+  name: Pyro Forge
+  power: 200
+  icon: buildings/pyro_forge.png
+  maxInputs: 2
+  cost: { intermediate_building_material: 130 }
+
+# Unlock: Selenian Corporation reputation.
+assembler:
+  name: Assembler
+  power: 60
+  icon: buildings/assembler.png
+  maxInputs: 3
+  cost: { intermediate_building_material: 200 }
+
+# Unlock: Future Health Solutions reputation.
+compounder:
+  name: Compounder
+  power: 60
+  icon: buildings/compounder.png
+  maxInputs: 3
+  cost: { intermediate_building_material: 180 }
+
+# Unlock: Future Health Solutions reputation. Development Station: Quartz Ore x100, Ignitium x50, Data Point x10000.
+# Tasks: Base Core at least level 4, every Compounder recipe unlocked.
+# Its own, faster recipes (it does not inherit the Compounder recipes; it also makes the two Pressurizer products).
+compounder_v2:
+  name: Compounder v.2
+  upgradeOf: compounder
+  power: 180
+  icon: buildings/compounder_v2.png
+  maxInputs: 3
+  cost: { intermediate_building_material: 220 }
+
+# Unlock: Selenian Corporation reputation.
+constructorizer:
+  name: Constructorizer
+  power: 700
+  icon: buildings/constructorizer.png
+  maxInputs: 4
+  cost: { intermediate_building_material: 270 }
+
+# Unlock: Selenian Corporation reputation. Development Station: Quartz Ore x140, Ignitium x60, Data Point x12000.
+# Tasks: Base Core at least level 5, every Constructorizer recipe unlocked, at least 30,000 available power in the grid.
+# Its own recipes: makes some Assembler and Compounder products, with double output.
+constructorizer_v2:
+  name: Constructorizer v.2
+  upgradeOf: constructorizer
+  power: 700
+  icon: buildings/constructorizer_v2.png
+  maxInputs: 4
+  cost: { intermediate_building_material: 300 }
+
+# Unlock: Selenian Corporation reputation.
+facturer:
+  name: Facturer
+  power: 850
+  icon: buildings/facturer.png
+  maxInputs: 5
+  cost: { intermediate_building_material: 400 }

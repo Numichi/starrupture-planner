@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=schema/game.schema.json
+#
+# THE MAIN GAME FILE – loading starts here.
+#
+# It lists the files holding the buildings and the items, the rail tiers, the mine
+# purities, the game rule switches and the starter project. The actual data lives in the
+# listed files.
+#
+# Paths: relative to this folder (public/data/). Any file may be .json as well.
+# Data sources: docs/DATA-SOURCES.md.
+
+title: Production Planner
+subtitle: StarRupture
+
+files:
+  # Buildings per category. A new category: a new file, and one line here.
+  buildings:
+    - buildings/extraction.yml
+    - buildings/production.yml
+    - buildings/logistics.yml
+    - buildings/power.yml
+  # Items per category. The order matters: the graph layout roughly follows it
+  # (from raw material to end product).
+  items:
+    - items/ores-and-ingots.yml
+    - items/materials.yml
+    - items/chemicals-and-fluids.yml
+    - items/components.yml
+    - items/consumables.yml
+    - items/advanced.yml
+
+# Every quantity is items per minute: recipe, mine, Dispatcher, rail.
+
+# Drone rail tiers (in the game: Rail v.1 / v.2 / v.3), throughput in items per minute.
+# The required tier is computed for every line and shared rail. The UI lets the player
+# pick the best tier already available.
+# cost: the build cost of one rail piece. Information only: the length of the rails
+# depends on the layout, so they are not part of the build cost summary.
+rails:
+  - name: v.1
+    capacity: 120
+    cost: { basic_building_material: 1 }
+  - name: v.2
+    capacity: 240
+    cost: { basic_building_material: 10 }
+  - name: v.3
+    capacity: 480
+    cost: { intermediate_building_material: 3 }
+
+# Mine node (deposit) purities, from the weaker to the better. The `mines:` tables of the
+# mines (buildings/extraction.yml, type: miner) refer to these ids; the UI shows `name`.
+# `default: true`: a new mine starts with it.
+# When an item has no purity in the game, give a single number at the mine, and the UI
+# shows no purity picker.
+purities:
+  - id: impure
+    name: Impure
+  - id: normal
+    name: Normal
+    default: true
+  - id: pure
+    name: Pure
+
+# Game rule switches: behaviour that may change with a patch.
+# The program knows both variants; choose here which one applies.
+features:
+  # Cargo pairing. false = 1:1, as in the game now: a Receiver can have one Dispatcher,
+  # and setting another one overrides the old one. true = N:1: several Dispatchers may
+  # send to the same Receiver.
+  cargoManyToOne: false
+  # Distribution between sources and consumers (ASSUMPTION, from experience, not
+  # confirmed). even = even: a consumer requests from the network and everyone serves it;
+  # a source splits its output equally between the requesters, the surplus goes to the
+  # others (e.g. two smelters → one factory: 240 + 240, not 480 + 0).
+  # optimal = the old calculation: as much as possible reaches the factories (smart routing).
+  flowDistribution: even
+
+# Starter project: bases, nodes (factories, mines, cargo, storages), links and their
+# positions on the canvas. Loaded only when the browser has no saved project yet (or when
+# "New project" is requested in the UI). Easiest: build it in the UI and copy the Export
+# file here.
+startProject: start-project.json
+
+# Without a startProject, one base starts, in which "Build chain" places the factories and
+# mines for these products (item id + items/min).
+defaultTargets:
+  - item: titanium_housing
+    rate: 30

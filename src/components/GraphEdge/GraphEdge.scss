@@ -1,0 +1,115 @@
+// GraphEdge – line states and the label with its rail badge.
+// The order of the badge modifiers matters: congested (red) must win over multi / manual.
+
+.edge {
+  transition: opacity 0.15s;
+  cursor: pointer;
+}
+
+.edge--dimmed {
+  opacity: 0.12;
+}
+
+.edge-hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 12;
+}
+
+.edge-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.edge--highlighted .edge-line,
+.edge:hover .edge-line {
+  opacity: 1;
+}
+
+.edge--congested .edge-line {
+  stroke-dasharray: 8 5;
+}
+
+.edge--idle .edge-line {
+  stroke-dasharray: 3 4;
+  opacity: 0.6;
+}
+
+.edge--selected {
+  .edge-line {
+    filter: drop-shadow(0 0 3px var(--accent));
+    opacity: 1;
+  }
+
+  .edge-label-bg {
+    stroke-width: 2.5;
+  }
+}
+
+.edge-label-bg {
+  fill: var(--label-bg);
+  stroke-width: 1;
+}
+
+.edge-label:hover .edge-label-bg {
+  stroke-width: 2;
+}
+
+.edge-label-text {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--text);
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+
+// ---------- Rail badge ----------
+
+.rail-badge {
+  fill: var(--rail-bg);
+}
+
+.rail-badge-text {
+  font-size: 9.5px;
+  font-weight: 700;
+  fill: var(--rail-text);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.edge--multi {
+  .rail-badge {
+    fill: var(--warn-bg);
+    stroke: var(--warn-text);
+    stroke-width: 1;
+  }
+
+  .rail-badge-text {
+    fill: var(--warn-text);
+  }
+}
+
+.edge--manual {
+  .rail-badge {
+    fill: var(--accent-soft);
+    stroke: var(--accent);
+    stroke-width: 1;
+  }
+
+  .rail-badge-text {
+    fill: var(--accent);
+  }
+}
+
+.edge--congested {
+  .rail-badge {
+    fill: var(--danger);
+    stroke: none;
+  }
+
+  .rail-badge-text {
+    fill: #fff;
+  }
+}

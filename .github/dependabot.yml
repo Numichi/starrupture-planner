@@ -1,0 +1,26 @@
+# Dependabot – weekly update proposals as pull requests (the Pages workflow checks them).
+version: 2
+
+updates:
+  # The actions of .github/workflows/ (pinned to commit SHAs).
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns: ['*']
+
+  # npm packages: minor and patch updates grouped, majors one by one.
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # TypeScript 7 (native compiler): vue-tsc and typescript-eslint cannot use it yet
+      # (they wait for its API, planned for 7.1). See docs/ARCHITECTURE.md › Tool versions.
+      - dependency-name: typescript
+        update-types: ['version-update:semver-major']

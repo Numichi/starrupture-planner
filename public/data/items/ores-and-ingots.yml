@@ -1,0 +1,141 @@
+# yaml-language-server: $schema=../schema/items.schema.json
+#
+# ITEMS – ORES AND INGOTS
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Every recipe value is items/min for one building; the comment
+# holds the per-cycle source data (x items / s). Fields: docs/CONFIGURATION.md.
+#
+# An item without a recipe comes from a mine (buildings/extraction.yml), or there is no
+# data yet about the building that makes it – then bring it with a Receiver or an incoming rail.
+
+titanium_ore:
+  name: Titanium Ore
+  icon: items/titanium_ore.png
+  color: '#54678d'
+  short: TO
+
+wolfram_ore:
+  name: Wolfram Ore
+  icon: items/wolfram_ore.png
+  color: '#90503c'
+  short: WO
+
+calcium_ore:
+  name: Calcium Ore
+  icon: items/calcium_ore.png
+  color: '#a19a95'
+  short: CO
+
+helium_3:
+  name: Helium-3
+  icon: items/helium_3.png
+  color: '#776e7d'
+  short: H3
+
+sulfur_ore:
+  name: Sulfur Ore
+  icon: items/sulfur_ore.png
+  color: '#ca9c47'
+  short: SO
+
+goethite_ore:
+  name: Goethite Ore
+  icon: items/goethite_ore.png
+  color: '#656767'
+  short: GO
+
+powerium:
+  name: Powerium
+  icon: items/powerium.png
+  color: '#80784d'
+  short: Po
+
+# Only needed for building upgrades (Development Station); it takes no part in production:
+# it has no recipe, no mine, and it is no recipe's input.
+quartz_ore:
+  name: Quartz Ore
+  icon: items/quartz_ore.png
+  color: '#6ab0b0'
+  short: QO
+
+ignitium:
+  name: Ignitium
+  icon: items/ignitium.png
+  color: '#955c37'
+  short: Ig
+
+titanium_bar:
+  name: Titanium Bar
+  icon: items/titanium_bar.png
+  color: '#4d5580'
+  short: TB
+  recipes:
+    - id: titanium_bar_smelter
+      building: smelter
+      input: { titanium_ore: 60 }
+      output: 60
+      # Smelter: x2 / 2 s
+
+wolfram_bar:
+  name: Wolfram Bar
+  icon: items/wolfram_bar.png
+  color: '#855847'
+  short: WB
+  recipes:
+    - id: wolfram_bar_smelter
+      building: smelter
+      input: { wolfram_ore: 60 }
+      output: 60
+      # Smelter: x2 / 2 s
+
+calcium_block:
+  name: Calcium Block
+  icon: items/calcium_block.png
+  color: '#b69486'
+  short: CB
+  recipes:
+    # Unlock at the Recipe Station: Calcium Ore x1000
+    - id: calcium_block_smelter
+      building: smelter
+      input: { calcium_ore: 60 }
+      output: 60
+      # Smelter: x2 / 2 s
+
+goethite_ingot:
+  name: Goethite Ingot
+  icon: items/goethite_ingot.png
+  color: '#514d80'
+  short: GI
+  recipes:
+    - id: goethite_ingot_pyro_forge
+      building: pyro_forge
+      input: { goethite_ore: 15 }
+      output: 150
+      # Pyro Forge: x10 / 4 s
+
+titanoferrite_ingot:
+  name: Titanoferrite Ingot
+  icon: items/titanoferrite_ingot.png
+  color: '#4d5680'
+  short: TI
+  recipes:
+    # Unlock at the Recipe Station: Goethite Ore x200, Titanium Ore x800, Data Point x2000
+    - id: titanoferrite_ingot_pyro_forge
+      building: pyro_forge
+      input: { titanium_ore: 150, goethite_ore: 15 }
+      output: 150
+      # Pyro Forge: x10 / 4 s
+
+wolfram_steel_ingot:
+  name: Wolfram Steel Ingot
+  icon: items/wolfram_steel_ingot.png
+  color: '#804f4d'
+  short: WSI
+  recipes:
+    # Unlock at the Recipe Station: Goethite Ore x200, Wolfram Ore x800, Data Point x2000
+    - id: wolfram_steel_ingot_pyro_forge
+      building: pyro_forge
+      input: { wolfram_ore: 150, goethite_ore: 15 }
+      output: 150
+      # Pyro Forge: x10 / 4 s

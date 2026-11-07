@@ -1,0 +1,48 @@
+// RailLineEditor – input slots and item rows (the load meter is shared: styles/_panel.scss).
+
+.editor-status + .field {
+  margin-top: 10px;
+}
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 14px;
+
+  .check {
+    margin: 2px 0;
+  }
+}
+
+.slots-input {
+  flex: none;
+  width: 64px !important;
+  padding: 0 4px !important;
+  text-align: center;
+}
+
+.item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  margin-bottom: 3px;
+  font-size: 12.5px;
+}
+
+.item-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.share {
+  width: 36px;
+  text-align: right;
+  font-size: 11.5px;
+}

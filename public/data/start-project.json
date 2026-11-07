@@ -1,0 +1,338 @@
+{
+  "version": 2,
+  "name": "Sample project",
+  "bases": [
+    {
+      "id": "base_main",
+      "name": "Main Base",
+      "factories": [
+        {
+          "id": "fac_w3xk7p",
+          "recipe": "titanium_bar_smelter",
+          "count": 1.111111
+        },
+        {
+          "id": "fac_5dk1wm",
+          "recipe": "wolfram_bar_smelter",
+          "count": 0.166667
+        },
+        {
+          "id": "fac_1j7p07",
+          "recipe": "calcium_block_smelter",
+          "count": 0.111111
+        },
+        {
+          "id": "fac_s6we5i",
+          "recipe": "titanium_beam_fabricator",
+          "count": 0.666667
+        },
+        {
+          "id": "fac_76fyhg",
+          "recipe": "titanium_sheet_fabricator",
+          "count": 1.333333
+        },
+        {
+          "id": "fac_75g9ge",
+          "recipe": "wolfram_wire_fabricator",
+          "count": 0.666667
+        },
+        {
+          "id": "fac_l2q2g2",
+          "recipe": "calcium_powder_furnace",
+          "count": 0.333333
+        },
+        {
+          "id": "fac_qu1nwu",
+          "recipe": "glass_furnace",
+          "count": 0.5
+        },
+        {
+          "id": "fac_a2r3sv",
+          "recipe": "titanium_housing_furnace",
+          "count": 1.333333
+        },
+        {
+          "id": "fac_hjjk0g",
+          "recipe": "stator_fabricator",
+          "count": 1
+        }
+      ],
+      "mines": [
+        {
+          "id": "mine_helium",
+          "building": "helium_3_extractor",
+          "item": "helium_3",
+          "purity": null,
+          "count": 1,
+          "output": null
+        }
+      ],
+      "receivers": [
+        {
+          "id": "rcv_titanium",
+          "name": "R-Titanium Ore",
+          "building": "cargo_receiver",
+          "item": "titanium_ore"
+        }
+      ],
+      "dispatchers": [],
+      "storages": [
+        {
+          "id": "sto_stator",
+          "name": "Stator Storage",
+          "building": "storage_depot_v1",
+          "item": "stator",
+          "count": 1
+        }
+      ],
+      "links": [
+        {
+          "id": "lnk_hlywhg",
+          "from": "recv:rcv_titanium",
+          "to": "fac:fac_w3xk7p",
+          "item": "titanium_ore"
+        },
+        {
+          "id": "lnk_nx8xb8",
+          "from": "railin:lnk_ore",
+          "to": "fac:fac_5dk1wm",
+          "item": "wolfram_ore"
+        },
+        {
+          "id": "lnk_7ess3j",
+          "from": "railin:lnk_ore",
+          "to": "fac:fac_1j7p07",
+          "item": "calcium_ore"
+        },
+        {
+          "id": "lnk_j89i1a",
+          "from": "fac:fac_w3xk7p",
+          "to": "fac:fac_s6we5i",
+          "item": "titanium_bar"
+        },
+        {
+          "id": "lnk_uie862",
+          "from": "fac:fac_w3xk7p",
+          "to": "fac:fac_76fyhg",
+          "item": "titanium_bar"
+        },
+        {
+          "id": "lnk_7k9gdp",
+          "from": "fac:fac_5dk1wm",
+          "to": "fac:fac_75g9ge",
+          "item": "wolfram_bar"
+        },
+        {
+          "id": "lnk_fjihnf",
+          "from": "fac:fac_1j7p07",
+          "to": "fac:fac_l2q2g2",
+          "item": "calcium_block"
+        },
+        {
+          "id": "lnk_bfcyph",
+          "from": "mine:mine_helium",
+          "to": "fac:fac_qu1nwu",
+          "item": "helium_3"
+        },
+        {
+          "id": "lnk_x309an",
+          "from": "fac:fac_l2q2g2",
+          "to": "fac:fac_qu1nwu",
+          "item": "calcium_powder"
+        },
+        {
+          "id": "lnk_s8w5nn",
+          "from": "fac:fac_s6we5i",
+          "to": "fac:fac_a2r3sv",
+          "item": "titanium_beam"
+        },
+        {
+          "id": "lnk_la509r",
+          "from": "fac:fac_76fyhg",
+          "to": "fac:fac_a2r3sv",
+          "item": "titanium_sheet"
+        },
+        {
+          "id": "lnk_i99ihy",
+          "from": "fac:fac_a2r3sv",
+          "to": "fac:fac_hjjk0g",
+          "item": "titanium_housing"
+        },
+        {
+          "id": "lnk_yste6m",
+          "from": "fac:fac_75g9ge",
+          "to": "fac:fac_hjjk0g",
+          "item": "wolfram_wire"
+        },
+        {
+          "id": "lnk_nfsnz5",
+          "from": "fac:fac_hjjk0g",
+          "to": "store:sto_stator",
+          "item": "stator"
+        }
+      ],
+      "railLines": [],
+      "positions": {
+        "fac:fac_w3xk7p": {
+          "x": 386,
+          "y": 208
+        },
+        "fac:fac_5dk1wm": {
+          "x": 776,
+          "y": 563
+        },
+        "fac:fac_1j7p07": {
+          "x": 776,
+          "y": 421
+        },
+        "fac:fac_s6we5i": {
+          "x": 776,
+          "y": 137
+        },
+        "fac:fac_76fyhg": {
+          "x": 776,
+          "y": 279
+        },
+        "fac:fac_75g9ge": {
+          "x": 1166,
+          "y": 563
+        },
+        "fac:fac_l2q2g2": {
+          "x": 1166,
+          "y": 421
+        },
+        "fac:fac_qu1nwu": {
+          "x": 1556,
+          "y": 209
+        },
+        "fac:fac_a2r3sv": {
+          "x": 1166,
+          "y": 208
+        },
+        "fac:fac_hjjk0g": {
+          "x": 1556,
+          "y": 357
+        },
+        "mine:mine_helium": {
+          "x": 40,
+          "y": 40
+        },
+        "recv:rcv_titanium": {
+          "x": 40,
+          "y": 225
+        },
+        "store:sto_stator": {
+          "x": 1946,
+          "y": 374
+        },
+        "railin:lnk_ore": {
+          "x": 52,
+          "y": 498
+        }
+      }
+    },
+    {
+      "id": "base_outpost",
+      "name": "Titanium Outpost",
+      "factories": [],
+      "mines": [
+        {
+          "id": "mine_titanium",
+          "building": "ore_excavator",
+          "item": "titanium_ore",
+          "purity": "normal",
+          "count": 0.555556,
+          "output": null
+        },
+        {
+          "id": "mine_wolfram",
+          "building": "ore_excavator",
+          "item": "wolfram_ore",
+          "purity": "impure",
+          "count": 1,
+          "output": null
+        },
+        {
+          "id": "mine_calcium",
+          "building": "ore_excavator",
+          "item": "calcium_ore",
+          "purity": "normal",
+          "count": 0.055556,
+          "output": null
+        }
+      ],
+      "receivers": [],
+      "dispatchers": [
+        {
+          "id": "dsp_titanium",
+          "name": "D-Titanium Ore",
+          "building": "cargo_dispatcher",
+          "item": "titanium_ore",
+          "receiverId": "rcv_titanium",
+          "feedRail": "v.1"
+        }
+      ],
+      "storages": [],
+      "links": [
+        {
+          "id": "lnk_7ty1zv",
+          "from": "mine:mine_titanium",
+          "to": "disp:dsp_titanium",
+          "item": "titanium_ore"
+        },
+        {
+          "id": "lnk_6yos8c",
+          "from": "mine:mine_calcium",
+          "to": "railout:lnk_ore",
+          "item": "calcium_ore"
+        },
+        {
+          "id": "lnk_94w4h8",
+          "from": "mine:mine_wolfram",
+          "to": "railout:lnk_ore",
+          "item": "wolfram_ore"
+        }
+      ],
+      "railLines": [],
+      "positions": {
+        "mine:mine_titanium": {
+          "x": 40,
+          "y": 40
+        },
+        "mine:mine_wolfram": {
+          "x": 40,
+          "y": 304
+        },
+        "mine:mine_calcium": {
+          "x": 40,
+          "y": 164
+        },
+        "disp:dsp_titanium": {
+          "x": 386,
+          "y": 40
+        },
+        "railout:lnk_ore": {
+          "x": 386,
+          "y": 223
+        }
+      }
+    }
+  ],
+  "railLinks": [
+    {
+      "id": "lnk_ore",
+      "name": "Ore Rail",
+      "from": "base_outpost",
+      "to": "base_main",
+      "items": [
+        "calcium_ore",
+        "wolfram_ore"
+      ]
+    }
+  ],
+  "settings": {
+    "objective": "buildings",
+    "maxRailName": null,
+    "recipeOverrides": {}
+  }
+}

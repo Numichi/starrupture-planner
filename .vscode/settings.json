@@ -1,0 +1,21 @@
+{
+  // --- Code style: Prettier formats, ESLint checks (eslint.config.js, .prettierrc.json) ---
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+  "eslint.validate": ["javascript", "typescript", "vue"],
+  // Game data and Markdown are formatted by hand (see .prettierignore).
+  "[yaml]": { "editor.formatOnSave": false },
+  "[markdown]": { "editor.formatOnSave": false },
+
+  // --- AI agents (GitHub Copilot) with the project instructions ---------------
+  // AGENTS.md: the shared rulebook (repository root).
+  "chat.useAgentsMdFile": true,
+  // .github/copilot-instructions.md and .github/instructions/*.instructions.md
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  // Attach area rules automatically when the edited file matches their applyTo pattern.
+  "chat.includeApplyingInstructions": true,
+  // CLAUDE.md is for Claude Code (it imports AGENTS.md + Claude-specific notes).
+  // Copilot already gets everything from AGENTS.md, so do not load it twice here.
+  "chat.useClaudeMdFile": false
+}

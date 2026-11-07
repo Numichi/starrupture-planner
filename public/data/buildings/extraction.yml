@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=../schema/buildings.schema.json
+#
+# BUILDINGS – EXTRACTION (mines)
+#
+# Sources: docs/DATA-SOURCES.md. Names in English,
+# exactly as in the game. Fields: docs/CONFIGURATION.md. In short:
+#   power: MW / building (negative = produces) · cost: build cost / building (pieces)
+#   upgradeOf: upgraded variant (↑) (a placed node on the graph can be upgraded to it)
+#   inheritRecipes: true = also runs the recipes of the base building (the StarRupture v.2
+#   buildings have their own recipe lists, so it is switched on nowhere here)
+#
+# type: miner · mines: items/min per item, per purity (impure / normal / pure,
+# see game.yml purities) or a single number when the item has no purity.
+
+ore_excavator:
+  name: Ore Excavator
+  type: miner
+  power: 5
+  icon: buildings/ore_excavator.png
+  cost: { basic_building_material: 80 }
+  # Source: x4 / 2 s = 120/min (Normal deposit). Impure / Pure: ×0.5 / ×2
+  # (60 / 120 / 240). Titanium, Wolfram and Calcium deposits only.
+  mines:
+    titanium_ore: { impure: 60, normal: 120, pure: 240 }
+    wolfram_ore: { impure: 60, normal: 120, pure: 240 }
+    calcium_ore: { impure: 60, normal: 120, pure: 240 }
+
+# Development Station: Quartz Ore x100, Ignitium x35, Data Point x7000.
+# Tasks: Base Core at least level 3, 10 Ore Excavators on Pure deposits.
+ore_excavator_v2:
+  name: Ore Excavator v.2
+  type: miner
+  upgradeOf: ore_excavator
+  power: 30
+  icon: buildings/ore_excavator_v2.png
+  cost: { intermediate_building_material: 120 }
+  # Normal: x10 / 2 s = 300/min. Impure / Pure: 180 / 480 /min (measured in the game,
+  # November 2026) – not ×0.5 / ×2 as with v.1.
+  mines:
+    titanium_ore: { impure: 180, normal: 300, pure: 480 }
+    wolfram_ore: { impure: 180, normal: 300, pure: 480 }
+    calcium_ore: { impure: 180, normal: 300, pure: 480 }
+
+helium_3_extractor:
+  name: Helium-3 Extractor
+  type: miner
+  power: 15
+  icon: buildings/helium_3_extractor.png
+  cost: { basic_building_material: 250 }
+  # Source: x8 / 2 s. No purity (not according to the community guide either).
+  mines:
+    helium_3: 240
+
+laser_drill:
+  name: Laser Drill
+  type: miner
+  power: 250
+  icon: buildings/laser_drill.png
+  cost: { intermediate_building_material: 150 }
+  # Source: x1 / 4 s. Goethite deposits only. No data on purity.
+  mines:
+    goethite_ore: 15
+
+oil_extractor:
+  name: Oil Extractor
+  type: miner
+  power: 400
+  icon: buildings/oil_extractor.png
+  cost: { intermediate_building_material: 240 }
+  # Source: x1 / 6 s. Powerium deposits only. No data on purity.
+  mines:
+    powerium: 10
+
+# NOT VERIFIED: the source page did not arrive (a list page was saved instead).
+# The values come from a community guide (version 0.1.3): 40 MW, 120 Intermediate
+# Building Material, 240/min, without purity. The icon is from the saved page's folder.
+sulfur_extractor:
+  name: Sulfur Extractor
+  type: miner
+  power: 40
+  icon: buildings/sulfur_extractor.png
+  cost: { intermediate_building_material: 120 }
+  mines:
+    sulfur_ore: 240

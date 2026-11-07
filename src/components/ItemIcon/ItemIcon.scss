@@ -1,0 +1,15 @@
+// ItemIcon – standalone (HTML) wrapper and the fallback label.
+
+.item-icon-standalone {
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+}
+
+.item-icon-text {
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-weight: 700;
+  pointer-events: none;
+  user-select: none;
+}

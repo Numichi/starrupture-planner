@@ -1,0 +1,132 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Buildings",
+  "type": "object",
+  "propertyNames": {
+    "type": "string",
+    "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+  },
+  "additionalProperties": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "power"
+    ],
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Display name."
+      },
+      "power": {
+        "type": "number",
+        "description": "Power consumption per building (MW). Negative = produces."
+      },
+      "speed": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "default": 1,
+        "description": "Speed multiplier for the recipes, default 1 (the items/min values are multiplied by it)."
+      },
+      "icon": {
+        "type": "string",
+        "description": "Image inside the public/icons/ folder, e.g. buildings/smelter.svg"
+      },
+      "maxInputs": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "How many recipe inputs it supports (for validation). Default 4."
+      },
+      "upgradeOf": {
+        "type": "string",
+        "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$",
+        "description": "Upgraded variant: the id of the base building (marked ↑). It inherits recipes only with inheritRecipes: true."
+      },
+      "inheritRecipes": {
+        "type": "boolean",
+        "default": false,
+        "description": "true: also runs the recipes of the upgradeOf building with the speed multiplier. The StarRupture v.2 buildings have their own recipe lists, so the default is false."
+      },
+      "cost": {
+        "type": "object",
+        "description": "Build cost of one building: { item_id: pieces }. The summary computes the minimum build cost from it.",
+        "propertyNames": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+        },
+        "additionalProperties": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      },
+      "type": {
+        "type": "string",
+        "enum": [
+          "production",
+          "miner",
+          "storage",
+          "dispatcher",
+          "receiver"
+        ],
+        "description": "Building type. Default: production (runs recipes). miner: a mine (mines: table)."
+      },
+      "mines": {
+        "type": "object",
+        "description": "For a mine: what it mines, items/min. item_id: 240, or per purity: item_id: { impure: 60, normal: 120, pure: 240 } (the purity ids of game.yml).",
+        "propertyNames": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+        },
+        "additionalProperties": {
+          "oneOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "description": "A single purity: items/min (no purity picker)."
+            },
+            {
+              "type": "object",
+              "description": "Items/min per purity.",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+              },
+              "additionalProperties": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "minProperties": 1
+            }
+          ]
+        }
+      },
+      "capacity": {
+        "type": "number",
+        "exclusiveMinimum": 0,
+        "description": "For a storage: how many pieces fit into one storage."
+      },
+      "throughput": {
+        "description": "For a Dispatcher: throughput in items/min. One number, or per feed rail tier: { v.1: 100, v.2: 171.4, v.3: 266.7 } (the rail names of game.yml).",
+        "oneOf": [
+          {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "minProperties": 1
+          }
+        ]
+      },
+      "railOutputs": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "For a Receiver: number of rail outputs (the limit of the outgoing flow)."
+      }
+    }
+  }
+}

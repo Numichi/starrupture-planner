@@ -1,0 +1,16 @@
+{
+  // Builds on the recommended @vue/tsconfig settings (strict mode, ES2022, DOM).
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    // `@/…` = `src/…` (components and composables; the engine keeps relative imports).
+    // Without `baseUrl` (deprecated in TypeScript 6): paths resolve relative to this file.
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.vue"]
+}

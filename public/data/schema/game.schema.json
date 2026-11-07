@@ -1,0 +1,150 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Main game file (game.yml)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "files"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The app title at the top of the side panel."
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Subtitle below the title."
+    },
+    "files": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "buildings",
+        "items"
+      ],
+      "properties": {
+        "buildings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Building files, relative to the data/ folder."
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Item files, relative to the data/ folder. The order matters."
+        }
+      }
+    },
+    "rails": {
+      "type": "array",
+      "description": "Drone rail tiers, from the weakest to the best (e.g. v.1, v.2, v.3).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "capacity"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Pl. v.1"
+          },
+          "capacity": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Throughput, items / min."
+          },
+          "cost": {
+            "type": "object",
+            "description": "Build cost of one rail piece (information only; the length of the rails depends on the layout).",
+            "propertyNames": {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$"
+            },
+            "additionalProperties": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        }
+      }
+    },
+    "purities": {
+      "type": "array",
+      "description": "Mine node purities, from the weaker to the better. The mines: tables of the mines refer to these ids.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$",
+            "description": "Pl. impure, normal, pure"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name, e.g. Impure"
+          },
+          "default": {
+            "type": "boolean",
+            "description": "A new mine starts with this purity."
+          }
+        }
+      }
+    },
+    "features": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Game rule switches.",
+      "properties": {
+        "cargoManyToOne": {
+          "type": "boolean",
+          "default": false,
+          "description": "false: a Receiver can have one Dispatcher (a new pairing overrides the old one). true: several Dispatchers may send to one Receiver (N:1)."
+        },
+        "flowDistribution": {
+          "enum": ["even", "optimal"],
+          "default": "even",
+          "description": "even: even distribution (consumers request from the network and everyone serves them; a source splits its output equally). optimal: as much as possible reaches the factories (the old calculation)."
+        }
+      }
+    },
+    "startProject": {
+      "type": "string",
+      "description": "Starter project file (bases, nodes, links, positions; the Export format), relative to the data/ folder. Loaded only when the browser has no saved project yet."
+    },
+    "defaultTargets": {
+      "type": "array",
+      "description": "Without a startProject: a chain is built for these products in the starting base.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item",
+          "rate"
+        ],
+        "properties": {
+          "item": {
+            "type": "string",
+            "pattern": "^[A-Za-z_][A-Za-z0-9_\\-]*$",
+            "description": "Anyag id."
+          },
+          "rate": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Darab / perc."
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+// App – two-column layout; stacked on narrow screens.
+
+/// Below this width the panel goes above the graph.
+$narrow: 760px;
+
+.app {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  height: 100%;
+
+  @media (max-width: $narrow) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+}
+
+.app-graph {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+
+.app-panel {
+  @media (max-width: $narrow) {
+    max-height: 45vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+}
