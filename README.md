@@ -106,10 +106,3 @@ There is no backend and no database: the project is stored in the browser (with 
 import), the game data is static files. TypeScript 7 (the native compiler) is not used yet:
 vue-tsc and typescript-eslint do not support it until its programmatic API ships (planned for
 7.1).
-
-## Project status
-
-Unreleased (version 0.1.0), under active development. Saved projects may need to be recreated
-between versions until the first release.
-
-No license has been chosen yet; until one is added, the default copyright rules apply.
